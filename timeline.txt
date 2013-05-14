@@ -1,0 +1,13 @@
+//TIMELINE \ TODO LIST//
+
+140513 2035
+decided on idea
+
+170513 2100
+frontpage done
+
+gh: 	learn html/css
+	design of frontpage
+
+ken:	learn html forms/look twitter bootstrap
+	create working skeleton with button and form
