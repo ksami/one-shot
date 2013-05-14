@@ -45,3 +45,36 @@ Prize
 =====
 -a 50x50px space to say/show anything on our website
 --TO BE DECIDED
+
+
+//////////////////////
+//Popularity Contest//
+//////////////////////
+
+Flow
+==========
+1. Register your profile with our site
+2. 3000 characters to gain likes, post links etc.
+3. 9gag rating style
+
+
+////////////////////////////////////////////
+//Stall review in nus canteens/restaurants//
+////////////////////////////////////////////
+
+-styled after hungrygowhere
+-for each individual stall in nus eg. biz western, mac's
+
+-user reviews and ratings for eg. service, price, deliciousness
+-map showing location of stall
+
+Implementation notes
+-use giftbook template and db
+-social integration
+-login
+-menu
+
+Audience
+-for those who are looking for place to eat
+-direct ppl to less crowded places during peak hr
+-
