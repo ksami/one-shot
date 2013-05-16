@@ -29,7 +29,23 @@ class MainPage(webapp2.RequestHandler):
       	self.response.out.write(template.render())
         # self.response.write('Hello world!')
 
+class Search(webapp2.RequestHandler):
+	# if someone tries to get me, i render the template called ... .hmtl
+    def get(self):
+    	template = jinja_environment.get_template('search.html')
+      	self.response.out.write(template.render())
+
+    def post(self):
+    	searchkey = self.request.get('key')
+    	template_values = {
+    		'search_key' : searchkey,
+    		'string' : "Hello World!"
+    	}
+    	template = jinja_environment.get_template('search.html')
+    	self.response.out.write(template.render(template_values))
+
 # if url ends with just / run the class MainPage
 app = webapp2.WSGIApplication([
-    ('/', MainPage)
+	('/', MainPage),
+	('/search', Search)
 ], debug=True)

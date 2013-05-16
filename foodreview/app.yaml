@@ -25,7 +25,7 @@ handlers:
 - url: /bootstrap
   static_dir: bootstrap
 
-- url: /
+- url: /.*
   script: main.app
 
 libraries:
