@@ -30,7 +30,8 @@
 		<!-- <a> tag is used to link to other web pages.hyperlink lar. Include the 
 			 reference destination obviously -->
 		<br> </br> <!--something like blank row? \n? Use: add one empty line lor....-->
-		<img src="some picture.jpg" alt="image cannot be displayed" width="140" height="100">
+		<img src="somepicture.jpg" alt="image cannot be displayed" width="140" height="100">      
+		<!-- ^^^this part doesnt work. T.T help me -->
 		<!-- elements&attributes: attributes specified in start tag, comes in pairs
 			 e.g. name="string", width='maximum = "value" Ikr...' yes~ include the "" -->
 
@@ -41,40 +42,61 @@
 			<tr><th width="300">Name</th><th>Address</th><th>Hobbit?</th></tr>
 			<!-- add a table row 1st then a table header. Rmb need to end tag -->
 			<tr><td>First guy yo.</td><td> I live where i live.</td><td><b><i>Nao</i></b></td>
+			<!-- table row then table data cell. td = data cell -->
 			<tr><td>Second guy :/</td><td>Who cares..~</td><td>Seriously</td>
 		</table>
 		<br></br>
 
 		<!-- copy paste from website =P -->
-		<table border="1">
+		<table border="2">
 		<caption>High level abit</caption>
 		<tr>
 		  <td>
-		   <p>This is a paragraph</p>
-		   <p>This is another paragraph</p>
+		    <p>This is a paragraph</p>
+		    <p>This is another paragraph</p>
 		  </td>
 		  <td>This cell contains a table:
-		   <table border="1">
-		   <tr>
-		     <td>A</td>
-		     <td>B</td>
-		   </tr>
-		   <tr>
-		     <td>C</td>
-		     <td>D</td>
-		   </tr>
-		   </table>
+		    <table border="1">
+		    <tr>
+		      <td>A</td>
+		      <td>B</td>
+		    </tr>
+		    <tr>
+		      <td>C</td>
+		      <td>D</td>
+		    </tr>
+		    </table>
 		  </td>
 		</tr>
 		<tr>
 		  <td>This cell contains a list
-		   <ul>
-		    <li>apples</li>
-		    <li>bananas</li>
-		    <li>pineapples</li>
-		   </ul>
+		    <ol>
+		   	<li>Fruits
+			  <li>Apples
+			  	<ul>
+			  	<li>Green apples</li>
+			  	<li>Red apples
+			  	  <ul>
+			  	  <li>Snow White??</li>      <!-- Nested list :D -->
+			  	  </ul>
+			  	</li>
+			  	</ul>
+			  </li>
+			  <li>Bananas</li>
+			  <li>Pineapples</li>
+			</li>
+		    </ol>
 		  </td>
-		  <td>HELLO</td>
+		  <td style="background-color:paleturquoise" compact>
+		  This cell contains a definition list:
+		  <h4>Beverages</h4>   <!-- h1,h2,h3 all different size. Try it if you want. -->
+		  <dl>
+			<dt>Tea</dt>
+			  <dd>- best served hot drink</dd>
+			<dt>Milk</dt>
+			  <dd>+ best served cold drink</dd>
+		  </dl>
+		  </td>
 		</tr>
 		</table>
 	</body>			<!-- end of body -->
