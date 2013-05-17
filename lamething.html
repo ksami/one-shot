@@ -3,35 +3,79 @@
 <html>			 <!-- start of Hyper Text Markup Language(html) file-->
 				 <!-- uses markuptags to describe document content -->
 				 <!-- tags come in pairs,1 start 1 end -->
-<title> Title of my webpage</title>
-<body style="background-color:pink;">			 <!-- start of page body.....oh u get all this please....-->
+				 <!-- an element consists of 1 open tag, yada yada and 1 end tag -->
+	<title> Title of my webpage</title>
+	<body style="background-color:peachpuff;">			 <!-- start of page body.....oh u get all this please....-->
 
-<h1> My first heading</h1>  <!-- heading(the first one) start and end-->
-<h2 style="background-color:blue"> Second heading...duh.... </h2>
-<ul>
-	<li style="background-color:gray">Wait</li>
-	<li>gimme a minute</li>
-	<li> ok can.</li>
-<ul>
-<p>My first paragraph.</p>  <!-- p = paragraph -->
-<hr> <!-- draw one line across -->
-<p> so many paragraphs...</p>
+		<h1> My first heading</h1>  <!-- heading(the first one) start and end-->
+		<h2 style="background-color:lightskyblue"> Second heading...duh.... </h2>
+		<ul>	<!-- ul = unorderlist, looks like point form -->
+			<li style="background-color:red">Wait</li>
+			<li>gimme a minute</li>
+			<li> ok can.</li>
+		</ul>
+		<p>My first paragraph.</p>  <!-- p = paragraph -->
+		<hr> <!-- draw one line across -->
+		<p><font color="ff00ff"> so many paragraphs...</font></p> <!-- yes-_-Its hexadecimal.Magenta btw. -->
 
-<!-- *****Text formatting***** -->
-<p><b> Bold </b> continue <i> italic </i> and <em> emphasize </em> hmm...
-	   <code> computer code style </code> log<sub>e</sub>2=e<sup>something
-	   </sup></p>
-<p> <ins> insert </ins> <del> deleted </del> </p>
-<img src="http://2.bp.blogspot.com/-TQL4V5_o5y4/Td0r9Ubl8BI/AAAAAAAAASs/168X-y14NTQ/s1600/cute-puppy.jpg" alt="Image cannot be displayed">
+		<!-- *****Text formatting***** -->
+		<p><b> Bold </b> continue <i> italic </i> and <em> emphasize </em> hmm...
+			   <code> computer code style </code> log<sub>e</sub>2=e<sup>something
+			   </sup></p>
+		<p> <ins> insert </ins> <del> deleted </del> </p>
+		<caption> Cute a not? </caption>
+		<img src="http://cutestuff.co/wp-content/uploads/2012/03/cute_cat_eyes.jpg" alt="Image cannot be displayed" width="200" height="200">
 
+		<a href="http://www.google.com#do u wanna google?"> This part is the link text</a>
+		<!-- <a> tag is used to link to other web pages.hyperlink lar. Include the 
+			 reference destination obviously -->
+		<br> </br> <!--something like blank row? \n? Use: add one empty line lor....-->
+		<img src="some picture.jpg" alt="image cannot be displayed" width="140" height="100">
+		<!-- elements&attributes: attributes specified in start tag, comes in pairs
+			 e.g. name="string", width='maximum = "value" Ikr...' yes~ include the "" -->
 
-<a href="http://www.google.com#do u wanna google?"> This part is the link text</a>
-<!-- <a> tag is used to link to other web pages.hyperlink lar. Include the 
-	 reference destination obviously -->
-<br> </br> <!--something like blank row? \n? Use: add one empty line lor....-->
-<img src="some picture.jpg" width="104" height="142">
-<!-- elements&attributes: attributes specified in start tag, comes in pairs
-	 e.g. name="string", width='maximum = "value" Ikr...' yes~ include the "" -->
+		<!-- ***** Tables~~ ***** -->
+		<table border="1">	<!-- CSS stuff. By right, we should include all the 
+								 aesthetics in another file -->
+			<caption>List of YOLO people</caption>  <!-- Title of table? something liddat? -->
+			<tr><th width="300">Name</th><th>Address</th><th>Hobbit?</th></tr>
+			<!-- add a table row 1st then a table header. Rmb need to end tag -->
+			<tr><td>First guy yo.</td><td> I live where i live.</td><td><b><i>Nao</i></b></td>
+			<tr><td>Second guy :/</td><td>Who cares..~</td><td>Seriously</td>
+		</table>
+		<br></br>
 
-</body>			<!-- end of body -->
+		<!-- copy paste from website =P -->
+		<table border="1">
+		<caption>High level abit</caption>
+		<tr>
+		  <td>
+		   <p>This is a paragraph</p>
+		   <p>This is another paragraph</p>
+		  </td>
+		  <td>This cell contains a table:
+		   <table border="1">
+		   <tr>
+		     <td>A</td>
+		     <td>B</td>
+		   </tr>
+		   <tr>
+		     <td>C</td>
+		     <td>D</td>
+		   </tr>
+		   </table>
+		  </td>
+		</tr>
+		<tr>
+		  <td>This cell contains a list
+		   <ul>
+		    <li>apples</li>
+		    <li>bananas</li>
+		    <li>pineapples</li>
+		   </ul>
+		  </td>
+		  <td>HELLO</td>
+		</tr>
+		</table>
+	</body>			<!-- end of body -->
 </html>			<!-- end of html file -->
