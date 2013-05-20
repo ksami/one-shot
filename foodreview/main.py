@@ -33,17 +33,6 @@ class MainPage(webapp2.RequestHandler):
       	self.response.out.write(template.render())
         # self.response.write('Hello world!')
 
-class Search(webapp2.RequestHandler):
-	# if someone tries to get me, i render the template called ... .hmtl
-    def get(self):
-        query = db.GqlQuery("SELECT * FROM Items ORDER BY date DESC")
-    	template_values = {
-    		'items' : query,
-    		'string' : "Hello World!"
-    	}
-    	template = jinja_environment.get_template('search.html')
-    	self.response.out.write(template.render(template_values))
-
 class Items(db.Model):
   """Models an item with description and date."""
   description = db.StringProperty(multiline=True)
@@ -52,12 +41,24 @@ class Items(db.Model):
 class AddList(webapp2.RequestHandler):
   """ Add an item to the datastore """
   def post(self):
-    item = Items()
-    item.description = self.request.get('key')
-    #changes the time to GMT+8
-    item.date = item.date.replace(hour=item.date.hour+8)
-    item.put()
+    if(self.request.get('key') != ""):
+        item = Items()
+        item.description = self.request.get('key')
+        #changes the time to GMT+8
+        item.date = item.date.replace(hour=item.date.hour+8)
+        item.put()
     self.redirect('/search')
+
+class Search(webapp2.RequestHandler):
+    # if someone tries to get me, i render the template called ... .hmtl
+    def get(self):
+        query = db.GqlQuery("SELECT * FROM Items ORDER BY date DESC")
+        template_values = {
+            'items' : query,
+            'string' : "Hello World!"
+        }
+        template = jinja_environment.get_template('search.html')
+        self.response.out.write(template.render(template_values))
 
 # if url ends with just / run the class MainPage
 app = webapp2.WSGIApplication([
