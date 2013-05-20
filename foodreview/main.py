@@ -14,9 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import urllib
 import webapp2
 import jinja2
 import os
+import datetime
+
+from google.appengine.ext import db
 
 # set jinja to be able to read from directory no matter where on the hard disk
 jinja_environment = jinja2.Environment(
@@ -32,20 +36,32 @@ class MainPage(webapp2.RequestHandler):
 class Search(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
     def get(self):
-    	template = jinja_environment.get_template('search.html')
-      	self.response.out.write(template.render())
-
-    def post(self):
-    	searchkey = self.request.get('key')
+        query = db.GqlQuery("SELECT * FROM Items ORDER BY date DESC")
     	template_values = {
-    		'search_key' : searchkey,
+    		'items' : query,
     		'string' : "Hello World!"
     	}
     	template = jinja_environment.get_template('search.html')
     	self.response.out.write(template.render(template_values))
 
+class Items(db.Model):
+  """Models an item with description and date."""
+  description = db.StringProperty(multiline=True)
+  date = db.DateTimeProperty(auto_now_add=True)
+ 
+class AddList(webapp2.RequestHandler):
+  """ Add an item to the datastore """
+  def post(self):
+    item = Items()
+    item.description = self.request.get('key')
+    #changes the time to GMT+8
+    item.date = item.date.replace(hour=item.date.hour+8)
+    item.put()
+    self.redirect('/search')
+
 # if url ends with just / run the class MainPage
 app = webapp2.WSGIApplication([
 	('/', MainPage),
-	('/search', Search)
+	('/search', Search),
+    ('/addlist', AddList)
 ], debug=True)

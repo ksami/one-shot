@@ -32,15 +32,24 @@
 				<!--Main Panel-->
 				<!--Cell one span (size) 10 columns-->
 				<div class = "span10">
-					{% if search_key %}
-					<h1>Search key is {{ search_key }}.</h1>
-					<h2>String is {{ string }}.</h2>
-					{% else %}
-					<form class="form-search" action = "/search" method = "post">
+					<form class="form-search" action = "/addlist" method = "post">
 							<input type="text" class="input-medium search-query" name="key">
 							<button type="submit" class="btn">Search</button>
 					</form>
-					{% endif %}
+			    <table class="table table-bordered table-striped" >
+					<thead>
+				  		<tr><th width="70%">Item</th><th>Date</th></tr>
+					</thead>
+					<tbody>
+						{% for item in items %}
+							<tr>
+								<td>{{ item.description }}</td>
+								<td>{{ item.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<h2>Test string is {{ string }}</h2>
 				</div>
 
 				<!--Cell two span 2 columns-->
