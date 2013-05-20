@@ -15,4 +15,8 @@ gh: 	learn html/css
 ken:	learn html forms/look twitter bootstrap
 	create working skeleton with button and form
 190513
-guohao: Nuuu~~ ....we need to clock the hours. What DID wE DO!~~ 
+guohao: Nuuu~~ ....we need to clock the hours. What DID wE DO!~~
+
+20/05/13
+guohao: 2 hrs. learn about jinja and webapp2 and the interaction with python to come up with the webpage
+
