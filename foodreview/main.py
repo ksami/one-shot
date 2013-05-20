@@ -33,7 +33,7 @@ class MainPage(webapp2.RequestHandler):
       	self.response.out.write(template.render())
         # self.response.write('Hello world!')
 
-class Items(db.Model):
+class Stalls(db.Model):
   """Models an item with description and date."""
   description = db.StringProperty(multiline=True)
   date = db.DateTimeProperty(auto_now_add=True)
@@ -42,19 +42,19 @@ class AddList(webapp2.RequestHandler):
   """ Add an item to the datastore """
   def post(self):
     if(self.request.get('key') != ""):
-        item = Items()
-        item.description = self.request.get('key')
+        stall = Stalls()
+        stall.description = self.request.get('key')
         #changes the time to GMT+8
-        item.date = item.date.replace(hour=item.date.hour+8)
-        item.put()
+        stall.date = stall.date.replace(hour=stall.date.hour+8)
+        stall.put()
     self.redirect('/search')
 
 class Search(webapp2.RequestHandler):
     # if someone tries to get me, i render the template called ... .hmtl
     def get(self):
-        query = db.GqlQuery("SELECT * FROM Items ORDER BY date DESC")
+        query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
         template_values = {
-            'items' : query,
+            'stalls' : query,
             'string' : "Hello World!"
         }
         template = jinja_environment.get_template('search.html')
