@@ -41,10 +41,10 @@
 				  		<tr><th width="70%">Item</th><th>Date</th></tr>
 					</thead>
 					<tbody>
-						{% for item in items %}
+						{% for stall in stalls %}
 							<tr>
-								<td>{{ item.description }}</td>
-								<td>{{ item.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
+								<td>{{ stall.description }}</td>
+								<td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
 							</tr>
 						{% endfor %}
 					</tbody>
@@ -55,7 +55,7 @@
 				<!--Cell two span 2 columns-->
 				<div class = "span2">
 					<ul class = "nav nav-list">
-						<li><a href = "/">Sidebar1</a></li>
+						<li><a href = "/{{ string }}">Sidebar1</a></li>
 						<li><a href = "/">sidebar2</a></li>
 						<li><a href = "/">sidebar3</a></li>
 					</ul>
