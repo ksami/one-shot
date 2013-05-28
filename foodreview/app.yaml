@@ -5,14 +5,6 @@ api_version: 1
 threadsafe: yes
 
 handlers:
-# Icon
-- url: /favicon\.ico
-  static_files: favicon.ico
-  upload: favicon\.ico
-
-# Self-written css
-- url: /stylesheets
-  static_dir: stylesheets
 
 - url: /images
   static_dir: images
@@ -20,6 +12,10 @@ handlers:
 # Javascripts
 - url: /scripts
   static_dir: scripts
+
+# Twitter Bootstrap
+- url: /flat-ui
+  static_dir: flat-ui
 
 # Twitter Bootstrap
 - url: /bootstrap
