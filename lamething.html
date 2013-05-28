@@ -107,6 +107,31 @@
 	<form action="">
 	<input type="button" value="Nope. Don't press." float:center>
 	</form>
+
+
+
+	<div id="fb-root"></div>						<!-- found this crap somewhere. -->
+	<script type="text/javascript">					/* suppose to do facebook like and google+ stuff */
+	    /* Facebook Like Button*/
+	    (function (d, s, id) {
+	        var js, fjs = d.getElementsByTagName(s)[0];
+	        if (d.getElementById(id)) return;
+	        js = d.createElement(s);
+	        js.id = id;
+	        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	        fjs.parentNode.insertBefore(js, fjs);
+	    }(document, 'script', 'facebook-jssdk'));
+
+	    /*Google+ */
+	    (function () {
+	        var po = document.createElement('script');
+	        po.type = 'text/javascript';
+	        po.async = true;
+	        po.src = 'https://apis.google.com/js/plusone.js';
+	        var s = document.getElementsByTagName('script')[0];
+	        s.parentNode.insertBefore(po, s);
+	    })();
+	</script>
 	<footer style="background-color:#7fff00;clear:both;text-align:center;height=40px">
 		<address> This is supposed to be address but what ever<br>
 				  Kenneth do one hohoho!<br>
