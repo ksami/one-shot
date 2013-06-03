@@ -1,0 +1,90 @@
+/* Overriding CSS for HungryNUS  */
+
+.navbar .brand {
+  text-decoration: none;
+  border-right: 1;
+  border-bottom: 1;
+}
+
+.navbar .nav > li > a:hover,
+.navbar .nav > li > a:focus {
+  background-color: #bdc3c7;
+}
+
+.navbar-inverse .nav-collapse .nav > li > a:hover,
+.navbar-inverse .nav-collapse .nav > li > a:focus,
+.navbar-inverse .nav-collapse .dropdown-menu a:hover,
+.navbar-inverse .nav-collapse .dropdown-menu a:focus {
+  background-color: #bdc3c7;
+}
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin-top: 20px;
+  margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+}
+
+.carousel {
+  margin-bottom: 60px;
+}
+
+.carousel .item {
+  height: 500px;
+}
+
+.carousel-control {
+  height: 80px;
+  margin-top: 0;
+  font-size: 120px;
+  color: #555555;
+  text-decoration: none;
+  background-color: transparent;
+  border: 0;
+  z-index: 10;
+}
+
+.carousel-control:hover,
+.carousel-control:focus {
+  color: #000000;
+  text-decoration: none;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+
+.carousel .container {
+  position: relative;
+  top: -500px;
+  z-index: 9;
+}
+
+.carousel-caption {
+  background-color: rgba(100,100,100,.3);
+  position: static;
+  max-width: 550px;
+  padding: 0 20px;
+  margin-top: 200px;
+}
+.carousel-caption h1,
+.carousel-caption .lead {
+  margin: 0;
+  line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,.4);
+}
+.carousel-caption .btn {
+  margin-top: 10px;
+  background-color: rgba(26,188,156,.3);
+}
+
+.carousel img {
+  margin-right: auto;
+  margin-left: auto;
+  height: 500px;
+  min-width: 85%;
+  width: auto;
+}
