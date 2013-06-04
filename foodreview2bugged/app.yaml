@@ -1,0 +1,35 @@
+application: foodreview
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: /images
+  static_dir: images
+
+- url: /css
+  static_dir: css
+
+# Javascripts
+- url: /scripts
+  static_dir: scripts
+
+# Twitter Bootstrap
+- url: /flat-ui
+  static_dir: flat-ui
+
+# Twitter Bootstrap
+- url: /bootstrap
+  static_dir: bootstrap
+
+- url: /.*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+
+- name: jinja2
+  version: latest
