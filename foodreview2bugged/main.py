@@ -47,7 +47,7 @@ class AddList(webapp2.RequestHandler):
 		#changes the time to GMT+8
 		stall.name = self.request.get('stall_name')
 		stall.description = self.request.get('stall_desc')
-		stall.date = stall.date.replace(hour=stall.date.hour+8)
+		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
 		stall.put()
 	self.redirect('/addlist')
 
