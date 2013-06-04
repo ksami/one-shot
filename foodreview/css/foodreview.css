@@ -1,5 +1,12 @@
 /* Overriding CSS for HungryNUS  */
 
+
+/*
+    For consistency
+    Navigations, buttons - rounded corners
+    Others - sharp 90deg corners
+*/
+
 .navbar .brand {
   text-decoration: none;
   border-right: 1;
@@ -26,10 +33,11 @@
   right: 0;
   z-index: 10;
   margin-top: 20px;
-  margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+  margin-bottom: 0px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
 }
 
 .carousel {
+  margin-top: 0px;
   margin-bottom: 60px;
 }
 
@@ -104,12 +112,13 @@ footer {
   border-radius: 5px;
 }
 
-/*  Container for all page content other than footer  */
+/*  Container for entire page other than footer  */
 div#wrap {
   min-height: 100%;
   height: auto !important;
   height: 100%;
   margin: 0 auto -30px;
+  background-color: #ecfaff;
 }
 
 div#featured {
@@ -118,4 +127,8 @@ div#featured {
 
 div#featured .content {
   padding: 10px;
+}
+
+div#page {
+  margin-top: 110px;
 }
