@@ -52,7 +52,7 @@
 
           <form class="form-search" action = "/search" method = "post">
             <b>Name of Stall</b>
-            <input type="text" class="input-medium search-query" name="stall_name">
+            <input type="text" class="input-medium search-query" name="stall_name_search">
             <button type="submit" class="btn">Search</button>
           </form>
           <table class="table table-bordered table-striped" >
@@ -62,7 +62,7 @@
             <tbody>
               {% for stall in stalls %}
               <tr>
-                {% if stall.name.find('stall_name') %}
+                {% if stall.name.find({{ stall_name }}) %}
                   <td>{{ stall.name }}</td>
                   <td>{{ stall.description }}</td>
                   <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
