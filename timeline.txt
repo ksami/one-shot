@@ -21,3 +21,5 @@ guohao: Nuuu~~ ....we need to clock the hours. What DID wE DO!~~
 guohao: 2 hrs. learn about jinja and webapp2 and the interaction with python to come up with the webpage
 300513
 guohao: 2hrs. learn about javascript and jQuery as a library of js. Some basic syntaxes
+050613
+guo hao: 5hrs. separate add and search. trying to learn how to implement search using logic. debugging website.
