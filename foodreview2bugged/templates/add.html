@@ -1,4 +1,4 @@
-<!-- Main page for FoodReview -->
+<!-- Search page for FoodReview -->
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
@@ -48,68 +48,16 @@
         <!--///////////////////////////////////////-->
         <!--//Page content goes inside the span10//-->
         <!--///////////////////////////////////////-->
-        <div class = "span10">
-          <div class = "row-fluid">
+        <div class = "span10" id="page">
 
-            <!-- Carousel-->
-            <div id="myCarousel" class="carousel slide" data-interval="5000">
-              <div class="carousel-inner">
-                <div class="item active">
-                  <img src="../images/carousel0.jpg">
-                  <div class="container">
-                    <div class="carousel-caption">
-                      <h1>Dumplings.</h1>
-                      <p class="lead">Hungry...</p>
-                      <a class="btn btn-large btn-primary" href="#">Sign up today</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="../images/carousel1.jpg">
-                  <div class="container">
-                    <div class="carousel-caption">
-                      <h1>Curry.</h1>
-                      <p class="lead">Hungry...</p>
-                      <a class="btn btn-large btn-primary" href="#">Learn more</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="../images/carousel2.jpg">
-                  <div class="container">
-                    <div class="carousel-caption">
-                      <h1>Pizza.</h1>
-                      <p class="lead">HungryNUS (Hungriness).</p>
-                      <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-              <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-            </div><!-- /.carousel -->
-          </div>  <!--/row-->
-
-          <div class = "row-fluid text-center" id="featured">
-            <div class = "span4 palette-orange content">
-              <h3 class = "text-left">Cheese Prata Shop</h3>
-              <img src="../images/prata.jpg" class="img-polaroid">
-              <p>Hello! These pratas are absolutely delicious, I can guarantee that! Seriously! You don't believe me? Why not? It's okay just come down and try our pratas!</p>
-              <p><a class="btn btn-info" href="/">View details &raquo;</a></p>
-            </div>
-            <div class = "span4 palette-carrot content">
-              <h3 class = "pull-left">Chocolate Prata Shop</h3>
-              <img src="../images/prata.jpg" class="img-polaroid">
-              <p>Delicious</p>
-              <p><a class="btn btn-info" href="/">View details &raquo;</a></p>
-            </div>
-            <div class = "span4 palette-pumpkin content">
-              <h3 class = "text-left">The Really Really Unnecessarily Long Named Prata Shop</h3>
-              <img src="../images/prata.jpg" class="img-polaroid">
-              <p>Prata</p>
-              <p><a class="btn btn-info" href="/display">View details &raquo;</a></p>
-            </div>
-          </div>  <!--/row-->
+          <form class="form-search" action = "/addlist" method = "post">
+            <b>Name of Stall</b>
+            <input type="text" class="input-medium search-query" name="stall_name">
+            <b>Description</b>
+            <input type="text" class="input-medium search-query" name="stall_desc">
+            <button type="submit" class="btn">Add</button>
+          </form>
+          <h2>Test string is {{ string }}</h2>
 
 
         </div>  <!--/span10-->

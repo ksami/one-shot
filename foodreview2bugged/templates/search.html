@@ -1,4 +1,4 @@
-<!-- Main page for FoodReview -->
+<!-- Search page for FoodReview -->
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
@@ -32,7 +32,8 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href = "/"><i class = "icon-home icon-white"></i> Home</a></li>
-              <li><a href = "/search"><i class = "icon-book icon-white"></i> Add</a></li>
+              <li><a href = "/addlist"><i class = "icon-book icon-white"></i> Add</a></li>
+              <li><a href = "/search"><i class = "icon-book icon-white"></i> Search</a></li>
               <li><a href = "/"><i class = "icon-question-sign icon-white"></i> Help</a></li>
             </ul>
           </div>  <!--/nav collapse-->
@@ -49,12 +50,10 @@
         <!--///////////////////////////////////////-->
         <div class = "span10" id="page">
 
-          <form class="form-search" action = "/addlist" method = "post">
+          <form class="form-search" action = "/search" method = "post">
             <b>Name of Stall</b>
             <input type="text" class="input-medium search-query" name="stall_name">
-            <b>Description</b>
-            <input type="text" class="input-medium search-query" name="stall_desc">
-            <button type="submit" class="btn">Add</button>
+            <button type="submit" class="btn">Search</button>
           </form>
           <table class="table table-bordered table-striped" >
             <thead>
@@ -63,9 +62,11 @@
             <tbody>
               {% for stall in stalls %}
               <tr>
-                <td>{{ stall.name }}</td>
-                <td>{{ stall.description }}</td>
-                <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
+                {% if stall.name.find('stall_name') %}
+                  <td>{{ stall.name }}</td>
+                  <td>{{ stall.description }}</td>
+                  <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
+                {% endif %}
               </tr>
               {% endfor %}
             </tbody>
