@@ -41,6 +41,15 @@ class Stalls(db.Model):
  
 class AddList(webapp2.RequestHandler):
   """ Add an item to the datastore """
+  def get(self):
+	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
+	template_values = {
+		'stalls' : query,
+		'string' : "Hello World!"
+	}
+	template = jinja_environment.get_template('add.html')
+	self.response.out.write(template.render(template_values))
+
   def post(self):
 	if(self.request.get('stall_name') != "" and self.request.get('stall_desc') != ""):
 		stall = Stalls(key_name=self.request.get('stall_name'))
@@ -49,18 +58,35 @@ class AddList(webapp2.RequestHandler):
 		stall.description = self.request.get('stall_desc')
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
 		stall.put()
-	self.redirect('/addlist')
+	self.redirect('/search')
 
-#class Search(webapp2.RequestHandler):
+class Search(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
   def get(self):
-	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
+  	if (self.request.get('stall_name_search') != ""):
+  		parent_key = db.Key.from_path('Stalls', self.request.get('stall_name_search'))
+		query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC",parent_key)
+	else:
+		query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC")
 	template_values = {
 		'stalls' : query,
 		'string' : "Hello World!"
 	}
 	template = jinja_environment.get_template('search.html')
 	self.response.out.write(template.render(template_values))
+
+  def post(self):
+  	searchstring = self.request.get('stall_name_search')
+	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
+	for x in query:
+		if ( x.name.find(searchstring) ):
+			stall = Stalls(parent=searchstring)
+			#changes the time to GMT+8
+			stall.name = x.name
+			stall.description = x.description
+			stall.date = x.date
+			stall.put()
+	self.redirect('/search')
 
 class Display(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
@@ -81,7 +107,7 @@ class Display(webapp2.RequestHandler):
 # if url ends with just / run the class MainPage
 app = webapp2.WSGIApplication([
 	('/', MainPage),
-#	('/search', Search),
+	('/search', Search),
     ('/display', Display),
     ('/addlist', AddList)
 ], debug=True)
