@@ -62,11 +62,9 @@
             <tbody>
               {% for stall in stalls %}
               <tr>
-                {% if stall.name.find({{ stall_name }}) %}
-                  <td>{{ stall.name }}</td>
-                  <td>{{ stall.description }}</td>
-                  <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
-                {% endif %}
+                <td>{{ stall.name }}</td>
+                <td>{{ stall.description }}</td>
+                <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
               </tr>
               {% endfor %}
             </tbody>
