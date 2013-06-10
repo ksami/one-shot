@@ -86,12 +86,13 @@ class Search(webapp2.RequestHandler):
 	 query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
 	# searchstring = self.request.get('stall_name_search')
 	# for x in query:
-	# 	if ( x.name.find(searchstring) ):
+	# 	if ( searchstring in x.name ):
 	# 		parent_key = db.Key.from_path('Search',searchstring)
 	# 		if parent_key = "":
 	# 			search = Search(key_name = searchstring)
-	# 			parent_key = search.key()
-	# 		searchresult = db.get(parent_key)
+	#			search.name = searchstring
+	#			search.put()
+	#		search = Search(key_name = searchstring)
 	# 		stall = Stall(parent=searchresult)
 	# 		#changes the time to GMT+8
 	# 		stall.name = x.name
