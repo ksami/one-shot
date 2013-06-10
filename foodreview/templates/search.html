@@ -32,7 +32,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href = "/"><i class = "icon-home icon-white"></i> Home</a></li>
-              <li><a href = "/addlist"><i class = "icon-book icon-white"></i> Add</a></li>
+              <li><a href = "/addlist"><i class = "icon-plus icon-white"></i> Add</a></li>
               <li><a href = "/search"><i class = "icon-book icon-white"></i> Search</a></li>
               <li><a href = "/"><i class = "icon-question-sign icon-white"></i> Help</a></li>
             </ul>
@@ -55,16 +55,16 @@
             <input type="text" class="input-medium search-query" name="stall_name_search">
             <button type="submit" class="btn">Search</button>
           </form>
-          <table class="table table-bordered table-striped" >
+          <table class="table table-bordered table-striped" id="search-result">
             <thead>
-              <tr><th>Name></th><th width="70%">Description</th><th>Photo</th><th>Date</th></tr>
+              <tr><th>Name</th><th width="40%">Description</th><th width="30%">Photo</th><th>Date</th></tr>
             </thead>
             <tbody>
               {% for stall in stalls %}
-              <tr>
+              <tr onclick="document.location='#'">
                 <td>{{ stall.name }}</td>
                 <td>{{ stall.description }}</td>
-                <td><img src="{{ stall.photo }}"></td>
+                <td><img src="{{ stall.photo }}" alt="{{ stall.name }}"></td>
                 <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
               </tr>
               {% endfor %}

@@ -1,4 +1,4 @@
-<!-- Display page for FoodReview -->
+<!-- Display each individual stall's details page for FoodReview -->
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
@@ -32,6 +32,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href = "/"><i class = "icon-home icon-white"></i> Home</a></li>
+              <li><a href = "/addlist"><i class = "icon-plus icon-white"></i> Add</a></li>
               <li><a href = "/search"><i class = "icon-book icon-white"></i> Search</a></li>
               <li><a href = "/"><i class = "icon-question-sign icon-white"></i> Help</a></li>
             </ul>
@@ -49,10 +50,6 @@
         <!--///////////////////////////////////////-->
         <div class = "span10" id="page">
 
-          <form class="form-search" action = "/addlist" method = "post">
-            <input type="text" class="input-medium search-query" name="key">
-            <button type="submit" class="btn">Search</button>
-          </form>
           <table class="table table-bordered table-striped" >
             <thead>
               <tr><th>Name</th><th width="70%">Item</th><th>Date</th></tr>

@@ -112,7 +112,7 @@ footer {
 
 .sidebar {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   border-radius: 5px;
   z-index: 11;
 }
@@ -151,4 +151,15 @@ div#page {
   background-color:transparent;
   color:transparent;
   cursor: pointer;
+  cursor: hand;
+}
+
+#search-result thead {
+  background-color: #ccccff;
+}
+
+#search-result tbody tr:hover td {
+  background-color: #eeeeee;
+  cursor: pointer;
+  cursor: hand;
 }
