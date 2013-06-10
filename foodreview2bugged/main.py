@@ -38,6 +38,11 @@ class Stalls(db.Model):
   name = db.StringProperty()
   description = db.StringProperty(multiline=True)
   date = db.DateTimeProperty(auto_now_add=True)
+  photo = db.BlobProperty()
+
+class Search(db.Model):
+  """Models a Seach result with the input string as name."""
+  name = db.StringProperty()
  
 class AddList(webapp2.RequestHandler):
   """ Add an item to the datastore """
@@ -57,6 +62,8 @@ class AddList(webapp2.RequestHandler):
 		stall.name = self.request.get('stall_name')
 		stall.description = self.request.get('stall_desc')
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
+		if self.request.get('stall_photo') != "":
+			stall.photo = self.request.get('stall_photo')
 		stall.put()
 	self.redirect('/search')
 
@@ -64,10 +71,11 @@ class Search(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
   def get(self):
   	if (self.request.get('stall_name_search') != ""):
-  		parent_key = db.Key.from_path('Stalls', self.request.get('stall_name_search'))
-		query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC",parent_key)
+  		parent_key = db.Key.from_path('Search', self.request.get('stall_name_search'))
+		query = db.GqlQuery("SELECT * FROM Stalls WHERE ANCESTOR IS :1 ORDER BY date DESC",parent_key)
 	else:
-		query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC")
+		query = {}
+		#query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC")
 	template_values = {
 		'stalls' : query,
 		'string' : "Hello World!"
@@ -76,11 +84,14 @@ class Search(webapp2.RequestHandler):
 	self.response.out.write(template.render(template_values))
 
   def post(self):
-  	searchstring = self.request.get('stall_name_search')
 	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
 	for x in query:
-		if ( x.name.find(searchstring) ):
-			stall = Stalls(parent=searchstring)
+		if ( x.name.find(search.name) ):
+			parent_key = db.Key.from_path('Search',search.name)
+			if parent_key = "":
+				search = Search(key_name = self.request.get('stall_name_search'))
+				parent_key = search.Key()
+			stall = db.get(parent_key)
 			#changes the time to GMT+8
 			stall.name = x.name
 			stall.description = x.description
