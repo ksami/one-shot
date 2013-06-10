@@ -105,6 +105,8 @@ footer {
   margin-top: 30px;
   background-color: #ecf0f1;
   z-index: 11;
+  position: fixed;
+  bottom: 0px;
 }
 
 
@@ -112,6 +114,7 @@ footer {
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 5px;
+  z-index: 11;
 }
 
 /*  Container for entire page other than footer  */
