@@ -51,11 +51,36 @@
         <div class = "span10" id="page">
 
           <form class="form-search" action = "/addlist" method = "post">
-            <b>Name of Stall</b>
-            <input type="text" class="input-medium search-query" name="stall_name">
-            <b>Description</b>
-            <input type="text" class="input-medium search-query" name="stall_desc">
-            <button type="submit" class="btn">Add</button>
+            
+            <div class="control-group">
+              <label class="control-label" for="nameInput"><strong>Name of Stall</strong></label>
+              <div class="controls">
+                <input type="text" id="nameInput" class="input-medium search-query" name="stall_name">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="descInput"><strong>Description</strong></label>
+              <div class="controls">
+                <input type="text" id="descInput" class="input-medium search-query" name="stall_desc">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="fileInput"><strong>File Input</strong></label>
+              <div class="controls">
+  <div style="position:relative;">
+    <button class='btn'>
+      Choose File
+      <input type="file" id="fileInput" name="file_source" onchange='$("#upload-file-info").html($(this).val());'>
+    </button>
+    &nbsp;
+    <span class='label label-info' id="upload-file-info">No File Chosen</span>
+  </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add</button>
           </form>
           <h2>Test string is {{ string }}</h2>
 
