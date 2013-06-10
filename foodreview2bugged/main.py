@@ -62,8 +62,8 @@ class AddList(webapp2.RequestHandler):
 		stall.name = self.request.get('stall_name')
 		stall.description = self.request.get('stall_desc')
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
-		if self.request.get('stall_photo') != "":
-			stall.photo = self.request.get('stall_photo')
+	#	if self.request.get('stall_photo') != "":
+	#		stall.photo = db.Blob(self.request.get('stall_photo'))
 		stall.put()
 	self.redirect('/search')
 
@@ -74,8 +74,7 @@ class Search(webapp2.RequestHandler):
   		parent_key = db.Key.from_path('Search', self.request.get('stall_name_search'))
 		query = db.GqlQuery("SELECT * FROM Stalls WHERE ANCESTOR IS :1 ORDER BY date DESC",parent_key)
 	else:
-		query = {}
-		#query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC")
+		query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC")
 	template_values = {
 		'stalls' : query,
 		'string' : "Hello World!"
@@ -84,20 +83,22 @@ class Search(webapp2.RequestHandler):
 	self.response.out.write(template.render(template_values))
 
   def post(self):
-	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
-	for x in query:
-		if ( x.name.find(search.name) ):
-			parent_key = db.Key.from_path('Search',search.name)
-			if parent_key = "":
-				search = Search(key_name = self.request.get('stall_name_search'))
-				parent_key = search.Key()
-			stall = db.get(parent_key)
-			#changes the time to GMT+8
-			stall.name = x.name
-			stall.description = x.description
-			stall.date = x.date
-			stall.put()
-	self.redirect('/search')
+	 query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
+	# searchstring = self.request.get('stall_name_search')
+	# for x in query:
+	# 	if ( x.name.find(searchstring) ):
+	# 		parent_key = db.Key.from_path('Search',searchstring)
+	# 		if parent_key = "":
+	# 			search = Search(key_name = searchstring)
+	# 			parent_key = search.key()
+	# 		searchresult = db.get(parent_key)
+	# 		stall = Stall(parent=searchresult)
+	# 		#changes the time to GMT+8
+	# 		stall.name = x.name
+	# 		stall.description = x.description
+	# 		stall.date = x.date
+	# 		stall.put()
+	 self.redirect('/search')
 
 class Display(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
