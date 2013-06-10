@@ -21,6 +21,7 @@ import os
 import datetime
 
 from google.appengine.ext import db
+from google.appengine.api import images
 
 # set jinja to be able to read from directory no matter where on the hard disk
 jinja_environment = jinja2.Environment(
@@ -62,8 +63,9 @@ class AddList(webapp2.RequestHandler):
 		stall.name = self.request.get('stall_name')
 		stall.description = self.request.get('stall_desc')
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
-	#	if self.request.get('stall_photo') != "":
-	#		stall.photo = db.Blob(self.request.get('stall_photo'))
+		if self.request.get('stall_photo') != "":
+		#	stall.photo = db.Blob(open(self.request.get('stall_photo'),"rb").read())
+			stall.photo =db.Blob(str(self.request.get('stall_photo')))    # bypass here. cannot use str.
 		stall.put()
 	self.redirect('/search')
 
@@ -83,10 +85,12 @@ class Search(webapp2.RequestHandler):
 	self.response.out.write(template.render(template_values))
 
   def post(self):
-	 query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
-	# searchstring = self.request.get('stall_name_search')
-	# for x in query:
+	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
+	#searchstring = self.request.get('stall_name_search')
+	#searchresult = {}
+	#for x in query:
 	# 	if ( searchstring in x.name ):
+	# 		searchresult += x
 	# 		parent_key = db.Key.from_path('Search',searchstring)
 	# 		if parent_key = "":
 	# 			search = Search(key_name = searchstring)
@@ -98,8 +102,9 @@ class Search(webapp2.RequestHandler):
 	# 		stall.name = x.name
 	# 		stall.description = x.description
 	# 		stall.date = x.date
+	#		stall.photo = x.photo
 	# 		stall.put()
-	 self.redirect('/search')
+	self.redirect('/search')
 
 class Display(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl

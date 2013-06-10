@@ -57,13 +57,14 @@
           </form>
           <table class="table table-bordered table-striped" >
             <thead>
-              <tr><th>Name></th><th width="70%">Description</th><th>Date</th></tr>
+              <tr><th>Name></th><th width="70%">Description</th><th>Photo</th><th>Date</th></tr>
             </thead>
             <tbody>
               {% for stall in stalls %}
               <tr>
                 <td>{{ stall.name }}</td>
                 <td>{{ stall.description }}</td>
+                <td><img src="{{ stall.photo }}"></td>
                 <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
               </tr>
               {% endfor %}
