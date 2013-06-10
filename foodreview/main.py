@@ -28,9 +28,9 @@ jinja_environment = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
-	def get(self):
-		template = jinja_environment.get_template('main.html')
-		self.response.out.write(template.render())
+  def get(self):
+	template = jinja_environment.get_template('main.html')
+	self.response.out.write(template.render())
 		# self.response.write('Hello world!')
 
 class Stalls(db.Model):
@@ -38,49 +38,88 @@ class Stalls(db.Model):
   name = db.StringProperty()
   description = db.StringProperty(multiline=True)
   date = db.DateTimeProperty(auto_now_add=True)
+  photo = db.BlobProperty()
+
+class Search(db.Model):
+  """Models a Seach result with the input string as name."""
+  name = db.StringProperty()
  
 class AddList(webapp2.RequestHandler):
   """ Add an item to the datastore """
+  def get(self):
+	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
+	template_values = {
+		'stalls' : query,
+		'string' : "Hello World!"
+	}
+	template = jinja_environment.get_template('add.html')
+	self.response.out.write(template.render(template_values))
+
   def post(self):
-	if(self.request.get('key') != ""):
-		stall = Stalls(key_name=self.request.get('key'))
+	if(self.request.get('stall_name') != "" and self.request.get('stall_desc') != ""):
+		stall = Stalls(key_name=self.request.get('stall_name'))
 		#changes the time to GMT+8
-		stall.name = self.request.get('key')
-		stall.date = stall.date.replace(hour=stall.date.hour+8)
+		stall.name = self.request.get('stall_name')
+		stall.description = self.request.get('stall_desc')
+		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
+	#	if self.request.get('stall_photo') != "":
+	#		stall.photo = db.Blob(self.request.get('stall_photo'))
 		stall.put()
 	self.redirect('/search')
 
 class Search(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
-	def get(self):
-		query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
-		template_values = {
-			'stalls' : query,
-			'string' : "Hello World!"
-		}
-		template = jinja_environment.get_template('search.html')
-		self.response.out.write(template.render(template_values))
+  def get(self):
+  	if (self.request.get('stall_name_search') != ""):
+  		parent_key = db.Key.from_path('Search', self.request.get('stall_name_search'))
+		query = db.GqlQuery("SELECT * FROM Stalls WHERE ANCESTOR IS :1 ORDER BY date DESC",parent_key)
+	else:
+		query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC")
+	template_values = {
+		'stalls' : query,
+		'string' : "Hello World!"
+	}
+	template = jinja_environment.get_template('search.html')
+	self.response.out.write(template.render(template_values))
+
+  def post(self):
+	 query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
+	# searchstring = self.request.get('stall_name_search')
+	# for x in query:
+	# 	if ( x.name.find(searchstring) ):
+	# 		parent_key = db.Key.from_path('Search',searchstring)
+	# 		if parent_key = "":
+	# 			search = Search(key_name = searchstring)
+	# 			parent_key = search.key()
+	# 		searchresult = db.get(parent_key)
+	# 		stall = Stall(parent=searchresult)
+	# 		#changes the time to GMT+8
+	# 		stall.name = x.name
+	# 		stall.description = x.description
+	# 		stall.date = x.date
+	# 		stall.put()
+	 self.redirect('/search')
 
 class Display(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
-	def get(self):
-		search = "prata"
-		query = db.GqlQuery("SELECT * "
-		                    "FROM Stalls "
-		                    "WHERE name = :1 "
-		                    "ORDER BY date DESC",
-		                    search)
-		template_values = {
-			'stalls' : query,
-			'string' : "Hellooooo"
-		}
-		template = jinja_environment.get_template('display.html')
-		self.response.out.write(template.render(template_values))
+  def get(self):
+	search = "prata"
+	query = db.GqlQuery("SELECT * "
+	                    "FROM Stalls "
+	                    "WHERE name = :1 "
+	                    "ORDER BY date DESC",
+	                    search)
+	template_values = {
+		'stalls' : query,
+		'string' : "Hellooooo"
+	}
+	template = jinja_environment.get_template('display.html')
+	self.response.out.write(template.render(template_values))
 
 # if url ends with just / run the class MainPage
 app = webapp2.WSGIApplication([
 	('/', MainPage),
 	('/search', Search),
-  ('/display', Display),
-  ('/addlist', AddList)
+    ('/display', Display),
+    ('/addlist', AddList)
 ], debug=True)

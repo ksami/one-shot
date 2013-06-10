@@ -32,8 +32,9 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href = "/"><i class = "icon-home icon-white"></i> Home</a></li>
+              <li><a href = "/addlist"><i class = "icon-book icon-white"></i> Add</a></li>
               <li><a href = "/search"><i class = "icon-book icon-white"></i> Search</a></li>
-              <li><a href = "#"><i class = "icon-question-sign icon-white"></i> Help</a></li>
+              <li><a href = "/"><i class = "icon-question-sign icon-white"></i> Help</a></li>
             </ul>
           </div>  <!--/nav collapse-->
         </div>  <!--/navbar inner rounded-->
@@ -49,13 +50,14 @@
         <!--///////////////////////////////////////-->
         <div class = "span10" id="page">
 
-          <form class="form-search" action = "/addlist" method = "post">
-            <input type="text" class="input-medium search-query" name="key">
+          <form class="form-search" action = "/search" method = "post">
+            <b>Name of Stall</b>
+            <input type="text" class="input-medium search-query" name="stall_name_search">
             <button type="submit" class="btn">Search</button>
           </form>
           <table class="table table-bordered table-striped" >
             <thead>
-              <tr><th>Name</th><th width="70%">Item</th><th>Date</th></tr>
+              <tr><th>Name></th><th width="70%">Description</th><th>Date</th></tr>
             </thead>
             <tbody>
               {% for stall in stalls %}
@@ -76,9 +78,9 @@
         <!--Sidebar-->
         <div class = "span2 palette-clouds sidebar">
           <ul class = "nav nav-list">
-            <li><a href = "#">sidebar1</a></li>
-            <li><a href = "#">sidebar2</a></li>
-            <li><a href = "#">sidebar3</a></li>
+            <li><a href = "/">sidebar1</a></li>
+            <li><a href = "/">sidebar2</a></li>
+            <li><a href = "/">sidebar3</a></li>
           </ul>
         </div>
 
