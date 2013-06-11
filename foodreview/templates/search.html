@@ -61,7 +61,7 @@
             </thead>
             <tbody>
               {% for stall in stalls %}
-              <tr onclick="document.location='#'">
+              <tr onclick="document.location='/display?{{stall.name}}'">
                 <td>{{ stall.name }}</td>
                 <td>{{ stall.description }}</td>
                 <td><img src="{{ stall.photo }}" alt="{{ stall.name }}"></td>

@@ -109,15 +109,13 @@ class Search(webapp2.RequestHandler):
 class Display(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
   def get(self):
-	search = "prata"
-	query = db.GqlQuery("SELECT * "
-	                    "FROM Stalls "
-	                    "WHERE name = :1 "
-	                    "ORDER BY date DESC",
-	                    search)
+	title = self.request.query_string
+	title = title.replace("%20", " ")
+	query = Stalls.get_by_key_name(title)
 	template_values = {
-		'stalls' : query,
-		'string' : "Hellooooo"
+		'stall' : query,
+		'string' : "Hellooooo",
+		'search' : title
 	}
 	template = jinja_environment.get_template('display.html')
 	self.response.out.write(template.render(template_values))
@@ -126,6 +124,6 @@ class Display(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
 	('/', MainPage),
 	('/search', Search),
-    ('/display', Display),
+    ('/display.*', Display),
     ('/addlist', AddList)
 ], debug=True)
