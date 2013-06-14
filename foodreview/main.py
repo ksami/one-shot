@@ -21,7 +21,7 @@ import os
 import datetime
 
 from google.appengine.ext import db
-from google.appengine.api import images
+from google.appengine.ext import blobstore
 
 # set jinja to be able to read from directory no matter where on the hard disk
 jinja_environment = jinja2.Environment(
@@ -65,18 +65,18 @@ class AddList(webapp2.RequestHandler):
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
 		if self.request.get('stall_photo') != "":
 		#	stall.photo = db.Blob(open(self.request.get('stall_photo'),"rb").read())
-			stall.photo =db.Blob(str(self.request.get('stall_photo')))    # bypass here. cannot use str.
+			stall.photo=db.Blob(str(self.request.get('stall_photo')))    # bypass here. cannot use str.
 		stall.put()
 	self.redirect('/search')
 
-class Search(webapp2.RequestHandler):
+class Searchf(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
   def get(self):
-  	if (self.request.get('stall_name_search') != ""):
-  		parent_key = db.Key.from_path('Search', self.request.get('stall_name_search'))
-		query = db.GqlQuery("SELECT * FROM Stalls WHERE ANCESTOR IS :1 ORDER BY date DESC",parent_key)
-	else:
-		query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC")
+  	#if (self.request.get('stall_name_search') != ""):
+  	#	parent_key = db.Key.from_path('Search', self.request.get('stall_name_search'))
+	#	query = db.GqlQuery("SELECT * FROM Stalls WHERE ANCESTOR IS :1 ORDER BY date DESC",parent_key)
+	#else:
+	query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC")
 	template_values = {
 		'stalls' : query,
 		'string' : "Hello World!"
@@ -86,25 +86,23 @@ class Search(webapp2.RequestHandler):
 
   def post(self):
 	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
-	#searchstring = self.request.get('stall_name_search')
-	#searchresult = {}
-	#for x in query:
-	# 	if ( searchstring in x.name ):
-	# 		searchresult += x
-	# 		parent_key = db.Key.from_path('Search',searchstring)
-	# 		if parent_key = "":
-	# 			search = Search(key_name = searchstring)
-	#			search.name = searchstring
-	#			search.put()
-	#		search = Search(key_name = searchstring)
-	# 		stall = Stall(parent=searchresult)
-	# 		#changes the time to GMT+8
-	# 		stall.name = x.name
-	# 		stall.description = x.description
-	# 		stall.date = x.date
-	#		stall.photo = x.photo
-	# 		stall.put()
-	self.redirect('/search')
+	searchstring = self.request.get('stall_name_search')
+	searchresult = []
+	for x in query:
+	 	if ( searchstring in x.name ):
+	 		stall = Stalls()
+	 		#changes the time to GMT+8
+	 		stall.name = x.name
+	 		stall.description = x.description
+	 		stall.date = x.date
+			stall.photo = x.photo
+	 		searchresult.append(stall)
+	template_values = {
+		'stalls' : searchresult,
+		'string' : "Hello World!"
+	}
+	template = jinja_environment.get_template('search.html')
+	self.response.out.write(template.render(template_values))
 
 class Display(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
@@ -125,7 +123,7 @@ class Display(webapp2.RequestHandler):
 # if url ends with just / run the class MainPage
 app = webapp2.WSGIApplication([
 	('/', MainPage),
-	('/search', Search),
+	('/search', Searchf),
     ('/display', Display),
     ('/addlist', AddList)
 ], debug=True)
