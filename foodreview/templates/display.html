@@ -50,21 +50,42 @@
         <!--///////////////////////////////////////-->
         <div class = "span10" id="page">
 
-          <table class="table table-bordered table-striped" >
-            <thead>
-              <tr><th>Name</th><th width="70%">Item</th><th>Date</th></tr>
-            </thead>
-            <tbody>
-              {% for stall in stalls %}
-              <tr>
-                <td>{{ stall.name }}</td>
-                <td>{{ stall.description }}</td>
-                <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          <h2>Test string is {{ string }}</h2>
+          <div class="row-fluid">
+            <div class="hero-unit offset2"><h1>{{ stall.name }}</h1>
+            Test string is {{ string }}<br>
+            search variable is {{ search }}
+            </div>
+            <!--Tabs-->
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#Details" data-toggle="tab">Details</a></li>
+                <li class=""><a href="#Reviews" data-toggle="tab">Reviews</a></li>
+                <li class=""><a href="#Photos" data-toggle="tab">Photos</a></li>
+                <li class=""><a href="#Rate" data-toggle="tab">Rate</a></li>
+              </ul>
+              <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="Details">
+                  <h1 style="font-size:50;">{{ stall.name }}</h1>
+                  <img class="offset1" src="../images/carousel0.jpg" style="max-height:500px; max-width:500px;">
+                  <p>
+                    Description of stall<br><br>
+                    {{ stall.description }}
+                  </p>
+                </div>
+                <div class="tab-pane fade" id="Reviews">
+                  <p>Reviews go here</p>
+                </div>
+                <div class="tab-pane fade" id="Photos">
+                  <p>
+                    Photos of stall<br><br>
+                    {{ stall.photo }}
+                  </p>
+                </div>
+                <div class="tab-pane fade" id="Rate">
+                  <p>Star Star Star Star Star</p>
+                </div>
+              </div>  <!--/tab-->
+
+          </div>
 
 
         </div>  <!--/span10-->
