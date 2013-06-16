@@ -20,6 +20,7 @@ import jinja2
 import os
 import datetime
 
+from google.appengine.api import images
 from google.appengine.ext import db
 from google.appengine.ext import blobstore
 
@@ -64,8 +65,9 @@ class AddList(webapp2.RequestHandler):
 		stall.description = self.request.get('stall_desc')
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
 		if self.request.get('stall_photo') != "":
-		#	stall.photo = db.Blob(open(self.request.get('stall_photo'),"rb").read())
-			stall.photo=db.Blob(str(self.request.get('stall_photo')))    # bypass here. cannot use str.
+		#stall.photo = db.Blob(open(self.request.get('stall_photo'),"rb").read())
+			img = images.resize(self.request.get('stall_photo'),200, 200)
+			stall.photo=db.Blob(img)  # bypass here. cannot use str.
 		stall.put()
 	self.redirect('/search')
 
