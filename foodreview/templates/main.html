@@ -79,14 +79,7 @@
   }
 </script>
 
-<!--
-  Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-  present a graphical Login button that triggers the FB.login() function when clicked.
 
-  Learn more about options for the login button plugin:
-  /docs/reference/plugins/login/ -->
-
-<div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1"></div>
 
 
 
@@ -197,6 +190,21 @@
             <li><a href = "/">sidebar1</a></li>
             <li><a href = "/">sidebar2</a></li>
             <li><a href = "/">sidebar3</a></li>
+            <!--
+              Below we include the Login Button social plugin. This button uses the JavaScript SDK to
+              present a graphical Login button that triggers the FB.login() function when clicked.
+
+              Learn more about options for the login button plugin:
+              /docs/reference/plugins/login/ -->
+
+            <li><div class="fb-login-button" data-show-faces="true" data-width="200" size="large" data-max-rows="1"></div></li>
+            <li></li>
+            <li><div class="btn" onclick="FB.api('/me', function(response) {
+      console.log('Good to see you, ' + response.name + '.');
+    });">Write name to console</div></li>
+            <li><div class="btn btn-primary" onclick="    FB.logout(function(response) {
+        // Person is now logged out
+    });">Logout</div></li>
           </ul>
         </div>
 
