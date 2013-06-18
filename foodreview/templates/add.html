@@ -52,17 +52,30 @@
 
           <form class="form-search" action = "/addlist" method = "post">
             
-            <div class="control-group">
-              <label class="control-label" for="nameInput"><strong>Name of Stall</strong></label>
-              <div class="controls">
-                <input type="text" id="nameInput" class="input-medium search-query" name="stall_name">
+            <div class="control-group row-fluid">
+              <div class="span3">
+                <label class="control-label" for="nameInput"><strong>Name of Stall</strong></label>
+                <div class="controls">
+                  <input type="text" id="nameInput" class="input-medium search-query" name="stall_name">
+                </div>
               </div>
             </div>
 
-            <div class="control-group">
-              <label class="control-label" for="descInput"><strong>Description</strong></label>
-              <div class="controls">
-                <input type="text" id="descInput" class="input-medium search-query" name="stall_desc">
+            <div class="control-group row-fluid">
+              <div class="span5">
+                <label class="control-label" for="imgInput"><strong>Photo</strong></label>
+                <div class="controls">
+                  <input type="url" id="imgInput" class="input-medium search-query" name="stall_photo">
+                </div>
+              </div>
+            </div>
+
+            <div class="control-group row-fluid">
+              <div class="span5">
+                <label class="control-label" for="descInput"><strong>Description</strong></label>
+                <div class="controls">
+                  <textarea rows="7" name="stall_desc" id="descInput"></textarea>
+                </div>
               </div>
             </div>
 
@@ -80,14 +93,19 @@
               </div>
             </div>-->
 
-            <div class="control-group">
-              <label class="control-label" for="imgInput"><strong>Photo</strong></label>
-              <div class="controls">
-                <input type="url" id="descInput" class="input-medium search-query" name="stall_photo">
-              </div>
-            </div>
+            <!--Tags-->
+            <div class="control-group row-fluid">
+              <div class="span3">
+                <label class="control-label" for="tagsInput"><strong>Tags</strong></label>
+                <div class="controls">
+                  <input name="stall_tags" id="tagsInput" class="tagsinput" value="">
+                </div>
+              </div>        
+            </div>  <!--/tags-->
 
-            <button type="submit" class="btn btn-primary">Add</button>
+            <div class="row-fluid">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
           </form>
           <h2>Test string is {{ string }}</h2>
 
