@@ -20,7 +20,6 @@ import jinja2
 import os
 import datetime
 
-from google.appengine.api import images
 from google.appengine.ext import db
 from google.appengine.ext import blobstore
 
@@ -40,11 +39,8 @@ class Stalls(db.Model):
   name = db.StringProperty()
   description = db.StringProperty(multiline=True)
   date = db.DateTimeProperty(auto_now_add=True)
-  photo = db.BlobProperty()
+  photo = db.StringProperty()
 
-class Search(db.Model):
-  """Models a Seach result with the input string as name."""
-  name = db.StringProperty()
  
 class AddList(webapp2.RequestHandler):
   """ Add an item to the datastore """
@@ -64,11 +60,12 @@ class AddList(webapp2.RequestHandler):
 		stall.name = self.request.get('stall_name')
 		stall.description = self.request.get('stall_desc')
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
-		if self.request.get('stall_photo') != "":
+		stall.photo = self.request.get('stall_photo')
 		#stall.photo = db.Blob(open(self.request.get('stall_photo'),"rb").read())
-			img = images.resize(self.request.get('stall_photo'),200, 200)
-			stall.photo=db.Blob(img)  # bypass here. cannot use str.
-		stall.put()
+		#img = images.resize(self.request.get('stall_photo'),200, 200)
+		#stall.photo=db.Blob(img)  # bypass here. cannot use str.
+		if stall.photo.rstrip() != '':
+			stall.put()
 	self.redirect('/search')
 
 class Searchf(webapp2.RequestHandler):

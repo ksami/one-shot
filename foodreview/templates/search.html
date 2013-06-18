@@ -64,7 +64,11 @@
               <tr onclick="document.location='/display?{{stall.name}}'">
                 <td>{{ stall.name }}</td>
                 <td>{{ stall.description }}</td>
-                <td><img src="{{ stall.photo }}" alt="{{ stall.name }}"></td>
+                <td>
+                  {% if stall.photo != "" %}
+                  <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}">
+                  {% endif %}
+                </td>
                 <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
               </tr>
               {% endfor %}
