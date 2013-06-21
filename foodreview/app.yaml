@@ -17,8 +17,8 @@ handlers:
   static_dir: css
 
 # Javascripts
-- url: /scripts
-  static_dir: scripts
+- url: /js
+  static_dir: js
 
 # Twitter Bootstrap
 - url: /flat-ui
