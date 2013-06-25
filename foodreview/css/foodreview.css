@@ -163,3 +163,11 @@ div#page {
   cursor: pointer;
   cursor: hand;
 }
+
+.hide {
+  display: none;
+}
+
+.fun {
+  background-color: #000000;
+}

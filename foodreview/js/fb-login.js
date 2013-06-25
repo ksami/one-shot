@@ -19,6 +19,8 @@
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
       testAPI();
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so. 
@@ -72,5 +74,21 @@
     FB.logout(function(response) {
         // Person is now logged out
         console.log(response.name + 'is now logged out.');
+    });
+  }
+
+
+  //test login status
+  function testLogin() {
+    console.log('Testing login');
+    FB.getLoginStatus(function(response) {
+      // If logged in, okay; not logged in, prompt
+      if (response.status === 'connected') {
+        var uid = response.authResponse.userID;
+        var accessToken = response.authResponse.accessToken;
+        console.log(uid + ' accessToken is ' + accessToken);
+      } else {
+        loginPlease();
+      }
     });
   }
