@@ -11,16 +11,18 @@
   <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
   <link href="../flat-ui/css/flat-ui.css" rel="stylesheet">
   <link href="../css/foodreview.css" rel="stylesheet">
+  <script src="../flat-ui/js/jquery-1.8.3.min.js"></script>
+  <script src="../js/fb-login.js"></script>
+  <script src="../js/test.js"></script>
 </head>
 
-<body>
-      <script src="../flat-ui/js/jquery-1.8.3.min.js"></script>
-  <script src="../js/test.js"></script>
+<body onload="testLogin()">
+
   <!--FACEBOOK LOGIN must be here-->
-  <div id="fb-root" onload="loginPlease()"></div>
+  <div id="fb-root"></div>
 
 
-  <div class = "container-fluid" onclick="loginPlease()" id="wrap">
+  <div class = "container-fluid" id="wrap">
     <!--Navigation bar at the top-->
     
     <div class = "navbar-wrapper">
@@ -53,7 +55,7 @@
         <!--///////////////////////////////////////-->
         <!--//Page content goes inside the span10//-->
         <!--///////////////////////////////////////-->
-        <div class = "span10 hide" id="page">
+        <div class = "span10 hidepage" id="page">
 
           <form class="form-search" action = "/addlist" method = "post">
             
@@ -116,6 +118,7 @@
 
 
         </div>  <!--/span10-->
+
         <!--//////////////////PAGE END///////////////////////-->
 
         <!--Sidebar-->
@@ -124,6 +127,17 @@
             <li><a href = "/">sidebar1</a></li>
             <li><a href = "/">sidebar2</a></li>
             <li><a href = "/">sidebar3</a></li>
+            <!--
+              Below we include the Login Button social plugin. This button uses the JavaScript SDK to
+              present a graphical Login button that triggers the FB.login() function when clicked.
+
+              Learn more about options for the login button plugin:
+              /docs/reference/plugins/login/ -->
+
+            <li><div class="fb-login-button" data-show-faces="true" data-width="200" size="large" data-max-rows="1"></div></li>
+            <li></li>
+            <li><a href="javascript:writeName()" class="btn">Write name to console</a></li>
+            <li><div class="btn btn-primary" onclick="verifyLogout()">Logout</div></li>
           </ul>
         </div>
 
@@ -151,13 +165,11 @@
 
 
   <!--////////        All JS loaded here       //////////-->
-  <script src="../flat-ui/js/jquery-1.8.3.min.js"></script>
   <script src="../flat-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
   <script src="../flat-ui/js/jquery.ui.touch-punch.min.js"></script>
   <script src="../flat-ui/js/bootstrap.min.js"></script>
   <script src="../flat-ui/js/bootstrap-select.js"></script>
   <script src="../flat-ui/js/bootstrap-switch.js"></script>
-  <script src="../js/fb-login.js"></script>
   <!--<script src="../flat-ui/js/flatui-checkbox.js"></script>
   <script src="../flat-ui/js/flatui-radio.js"></script>-->
   <script src="../flat-ui/js/jquery.tagsinput.js"></script>
@@ -165,7 +177,5 @@
   <!--<script src="../flat-ui/js/jquery.stacktable.js"></script>
   <script src="http://vjs.zencdn.net/c/video.js"></script>-->
   <script src="../flat-ui/js/application.js"></script>
-
-  <!--<script src="../js/test.js"></script>-->
 </body>
 </html>

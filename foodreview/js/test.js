@@ -9,12 +9,12 @@
   
 })(jQuery);
 
-(function togglePage($) {
-  $("#page").toggleClass("hide");
-})(jQuery);
 
 function loginPlease() {
+  //document.getElementById("page").innerHTML="PLease auth our app!";
+  //$("#page2").toggleClass("hidepage");
   //window.location.assign("/");
-  //$("#page").load("/ #page");
-  $("#page").replaceWith('<div class="span10" id="page">please authenticate our app before adding a review<div class="fb-login-button" data-show-faces="true" data-width="200" size="large" data-max-rows="1"></div></div>');
+  //$("#page").load("/addlist #page2");
+  $("#page").html('<h3>Our reviews page only likes people who use Facebook sorry :(</h3> <br><h4>Psst... Try logging into Facebook over at the sidebar and remember to accept our app!</h4>');
+  $("#page").toggleClass("hidepage");
 }

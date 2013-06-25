@@ -41,54 +41,64 @@
   });
   };
 
-  // Load the SDK asynchronously
-  (function(d){
-   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement('script'); js.id = id; js.async = true;
-   js.src = "//connect.facebook.net/en_US/all.js";
-   ref.parentNode.insertBefore(js, ref);
-  }(document));
+// Load the SDK asynchronously
+(function(d){
+ var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+ if (d.getElementById(id)) {return;}
+ js = d.createElement('script'); js.id = id; js.async = true;
+ js.src = "//connect.facebook.net/en_US/all.js";
+ ref.parentNode.insertBefore(js, ref);
+}(document));
 
-  // Here we run a very simple test of the Graph API after login is successful. 
-  // This testAPI() function is only called in those cases. 
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
-    });
+// Here we run a very simple test of the Graph API after login is successful. 
+// This testAPI() function is only called in those cases. 
+function testAPI() {
+  console.log('Welcome!  Fetching your information.... ');
+  FB.api('/me', function(response) {
+    console.log('Good to see you, ' + response.name + '.');
+  });
+}
+
+
+//to write username to console
+function writeName() {
+  FB.api('/me', function(response) {
+    console.log('Good to see you, ' + response.name + '.');
+  });
+}
+
+
+//to verify logout
+function verifyLogout() {
+  console.log('Logging out in progress...');
+  FB.logout(function(response) {
+      // Person is now logged out
+      console.log(response.name + 'is now logged out.');
+  });
+}
+
+
+//test login status
+function testLogin() {
+  console.log('Testing login');
+  if(typeof(FB) === "object" && FB._apiKey === null) {   
+      FB.init({
+        appId      : '350228361773468', // App ID
+        channelUrl : '//hungrynus.appspot.com/channel.html', // Channel File
+        status : true, // check login status
+        cookie : true, // enable cookies to allow the server to access the session
+        xfbml  : true  // parse XFBML
+      });
   }
-
-
-  //to write username to console
-  function writeName() {
-    FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
-    });
-  }
-
-
-  //to verify logout
-  function verifyLogout() {
-    console.log('Logging out in progress...');
-    FB.logout(function(response) {
-        // Person is now logged out
-        console.log(response.name + 'is now logged out.');
-    });
-  }
-
-
-  //test login status
-  function testLogin() {
-    console.log('Testing login');
-    FB.getLoginStatus(function(response) {
-      // If logged in, okay; not logged in, prompt
-      if (response.status === 'connected') {
-        var uid = response.authResponse.userID;
-        var accessToken = response.authResponse.accessToken;
-        console.log(uid + ' accessToken is ' + accessToken);
-      } else {
-        loginPlease();
-      }
-    });
-  }
+  FB.getLoginStatus(function(response) {
+    // If logged in, okay; not logged in, prompt
+    if (response.status === 'connected') {
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+      console.log(uid + ' accessToken is ' + accessToken);
+    } else {
+      loginPlease();
+    }
+  });
+  console.log('Login test end');
+}

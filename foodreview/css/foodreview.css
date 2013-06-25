@@ -134,7 +134,7 @@ div#featured .content {
   padding: 10px;
 }
 
-div#page {
+div#page, #page2 {
   margin-top: 110px;
 }
 
@@ -164,10 +164,6 @@ div#page {
   cursor: hand;
 }
 
-.hide {
-  display: none;
-}
-
-.fun {
-  background-color: #000000;
+.hidepage {
+  visibility: hidden;
 }
