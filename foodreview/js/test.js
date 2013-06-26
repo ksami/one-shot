@@ -9,6 +9,10 @@
   
 })(jQuery);
 
+/*$(function () {
+  $('#userid').val(testLogin());
+});*/
+
 
 function togglePage() {
   $("#page").toggleClass("hidepage");

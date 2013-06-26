@@ -64,6 +64,7 @@ function testAPI() {
 function writeName() {
   FB.api('/me', function(response) {
     console.log('Good to see you, ' + response.name + '.');
+    return response.name;
   });
 }
 
@@ -98,11 +99,15 @@ function testLogin() {
       var uid = response.authResponse.userID;
       var accessToken = response.authResponse.accessToken;
       togglePage();
-      console.log(uid + ' accessToken is ' + accessToken);
-      return true;
+      console.log('uid is ' + uid + ' accessToken is ' + accessToken);
+      $('#userid').val(uid);
+
+      FB.api('/me', function(response) {
+        console.log('username is ' + response.name);
+        $("#username").val(response.name);
+      });
     } else {
       loginPlease();
-      return false;
     }
   });
   console.log('Login test end');
