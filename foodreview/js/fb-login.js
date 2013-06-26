@@ -73,7 +73,7 @@ function verifyLogout() {
   console.log('Logging out in progress...');
   FB.logout(function(response) {
       // Person is now logged out
-      console.log(response.name + 'is now logged out.');
+      console.log(response.name + ' is now logged out.');
   });
 }
 
@@ -89,15 +89,20 @@ function testLogin() {
         cookie : true, // enable cookies to allow the server to access the session
         xfbml  : true  // parse XFBML
       });
+      console.log('FB.init() called');
   }
   FB.getLoginStatus(function(response) {
+    console.log('FB.getLoginStatus() called');
     // If logged in, okay; not logged in, prompt
     if (response.status === 'connected') {
       var uid = response.authResponse.userID;
       var accessToken = response.authResponse.accessToken;
+      togglePage();
       console.log(uid + ' accessToken is ' + accessToken);
+      return true;
     } else {
       loginPlease();
+      return false;
     }
   });
   console.log('Login test end');

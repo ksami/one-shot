@@ -4,10 +4,15 @@
 
     // all a tags on hover
     $("#featured").hover(function() {
-        $(this).toggleClass("fun");
+        $(this).toggleClass("hidepage");
     });
   
 })(jQuery);
+
+
+function togglePage() {
+  $("#page").toggleClass("hidepage");
+}
 
 
 function loginPlease() {
