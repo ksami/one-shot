@@ -1,4 +1,4 @@
-<!-- Display each individual stall's details page for FoodReview -->
+<!-- Search page for FoodReview -->
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class = "brand" href = "/">HungryNUS</a>
-          <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+          <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed within .navbar-collapse.collapse. -->
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href = "/"><i class = "icon-home icon-white"></i> Home</a></li>
@@ -50,42 +50,64 @@
         <!--///////////////////////////////////////-->
         <div class = "span10" id="page">
 
-          <div class="row-fluid">
-            <div class="hero-unit offset2"><h1>{{ stall.name }}</h1>
-            Test string is {{ string }}<br>
-            search variable is {{ search }}
+          <form class="form-search" action = "/Addreview" method = "post">
+            
+            <div class="control-group row-fluid">
+              <div class="span3">
+                <label class="control-label" for="nameInput"><strong>Name of Stall</strong></label>
+                <div class="controls">
+                  <input type="text" id="nameInput" class="input-medium search-query" name="review_name">
+                </div>
+              </div>
             </div>
-            <!--Tabs-->
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#Details" data-toggle="tab">Details</a></li>
-                <li class=""><a href="#Reviews" data-toggle="tab">Reviews</a></li>
-                <li class=""><a href="#Photos" data-toggle="tab">Photos</a></li>
-                <li class=""><a href="#Rate" data-toggle="tab">Rate</a></li>
-              </ul>
-              <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade in active" id="Details">
-                  <h1 style="font-size:50;">{{ stall.name }}</h1>
-                  <img class="offset1" src="{{  stall.photo  }}" style="max-height:500px; max-width:500px;">
-                  <p>
-                    Description of stall<br><br>
-                    {{ stall.description }}
-                  </p>
-                </div>
-                <div class="tab-pane fade" id="Reviews">
-                  <p>Reviews go here</p>
-                </div>
-                <div class="tab-pane fade" id="Photos">
-                  <p>
-                    Photos of stall<br><br>
-                    <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}">
-                  </p>
-                </div>
-                <div class="tab-pane fade" id="Rate">
-                  <p>Star Star Star Star Star</p>
-                </div>
-              </div>  <!--/tab-->
 
-          </div>
+            <div class="control-group row-fluid">
+              <div class="span5">
+                <label class="control-label" for="imgInput"><strong>Photo</strong></label>
+                <div class="controls">
+                  <input type="text" id="imgInput" class="input-medium search-query" name="review_photo">
+                </div>
+              </div>
+            </div>
+
+            <div class="control-group row-fluid">
+              <div class="span5">
+                <label class="control-label" for="descInput"><strong>Review</strong></label>
+                <div class="controls">
+                  <textarea rows="7" name="review_text" id="descInput"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!--<div class="control-group">
+              <label class="control-label" for="fileInput"><strong>File Input</strong></label>
+              <div class="controls">
+                <div style="position:relative;">
+                <button class='btn'>
+                Choose File
+                <input type="file" id="fileInput" name="stall_photo" onchange='$("#upload-file-info").html($(this).val());'>
+                </button>
+                &nbsp;
+                <span class='label label-info' id="upload-file-info">No File Chosen</span>
+                </div>
+              </div>
+            </div>-->
+
+            <!--Tags-->
+            <div class="control-group row-fluid">
+              <div class="span3">
+                <label class="control-label" for="tagsInput"><strong>Tags</strong></label>
+                <div class="controls">
+                  <input name="stall_tags" id="tagsInput" class="tagsinput" value="">
+                </div>
+              </div>        
+            </div>  <!--/tags-->
+
+            <div class="row-fluid">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+          <h2>Test string is {{ string }}</h2>
 
 
         </div>  <!--/span10-->

@@ -71,11 +71,7 @@ class AddList(webapp2.RequestHandler):
 class Searchf(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
   def get(self):
-  	#if (self.request.get('stall_name_search') != ""):
-  	#	parent_key = db.Key.from_path('Search', self.request.get('stall_name_search'))
-	#	query = db.GqlQuery("SELECT * FROM Stalls WHERE ANCESTOR IS :1 ORDER BY date DESC",parent_key)
-	#else:
-	query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC")
+	query = db.GqlQuery("SELECT * FROM Stalls ORDER by date DESC Limit 30")
 	template_values = {
 		'stalls' : query,
 		'string' : "Hello World!"
