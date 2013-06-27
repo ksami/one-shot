@@ -61,6 +61,17 @@ class AddList(webapp2.RequestHandler):
 		stall.description = self.request.get('stall_desc')
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
 		stall.photo = self.request.get('stall_photo')
+
+
+		######  Get username in string and userid in int here   #####
+		#stall.userid = self.request.get('user_id')
+		#stall.username=self.request.get('user_name')
+
+
+
+
+
+
 		#stall.photo = db.Blob(open(self.request.get('stall_photo'),"rb").read())
 		#img = images.resize(self.request.get('stall_photo'),200, 200)
 		#stall.photo=db.Blob(img)  # bypass here. cannot use str.
