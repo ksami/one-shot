@@ -41,7 +41,14 @@ class Stalls(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
   photo = db.StringProperty()
 
- 
+class Reviews(db.Model):
+  """Models a review with username, userid, name of stall, review and date"""
+  username = db.StringProperty()
+  userid = db.IntegerProperty()
+  stallname = db.StringProperty()
+  review = db.StringProperty(multiline=True)
+  date = db.DateTimeProperty(auto_now_add=True)
+
 class AddList(webapp2.RequestHandler):
   """ Add an item to the datastore """
   def get(self):
@@ -123,11 +130,27 @@ class Display(webapp2.RequestHandler):
 	}
 	template = jinja_environment.get_template('display.html')
 	self.response.out.write(template.render(template_values))
+#class AddReview(webapp2.RequestHandler):
+  #def get(self):
+	#if (self.request.get('user_name') != "")
+	#	template = jinja_environment.get_template('add.html')
+	#	self.response.out.write(template.render(template_values))
+	#else
+	#	self.redirect(self.request.host_url)
+
+  #def post(self):
+  	#if (self.request.get('user_id') != None and self.request.get('user_name'))
+  	#	review = Reviews(key_name=self.request.get('user_name'))
+	#	review.userid = self.request.get('user_id')
+	#	review.username=self.request.get('user_name')
+	#	review.put()
+
 
 # if url ends with just / run the class MainPage
 app = webapp2.WSGIApplication([
 	('/', MainPage),
 	('/search', Searchf),
     ('/display.*', Display),
-    ('/addlist', AddList)
+    ('/addlist', AddList),
+   # ('/addreview', AddReview)
 ], debug=True)
