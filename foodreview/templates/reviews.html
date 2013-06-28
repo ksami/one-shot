@@ -50,27 +50,27 @@
         <!--///////////////////////////////////////-->
         <div class = "span10" id="page">
 
-          <form class="form-search" action = "/search" method = "post">
+          <!--<form class="form-search" action = "/search" method = "post">
             <b>Name of Stall</b>
             <input type="text" class="input-medium search-query" name="stall_name_search">
             <button type="submit" class="btn">Search</button>
-          </form>
-          <table class="table table-bordered table-striped" id="search-result">
+          </form>-->
+          <table class="table table-bordered table-striped">
             <thead>
               <tr><th>Name</th><th width="40%">Description</th><th width="30%">Photo</th><th>Date</th></tr>
             </thead>
             <tbody>
-              {% for stall in stalls %}
+              {% for review in reviews %}
               <!--<tr onclick="document.location='/display?{{stall.name}}'">-->
               <tr>
-                <td>{{ stall.name }}</td>
-                <td>{{ stall.description }}</td>
+                <td>{{ review.stallname }}</td>
+                <td>{{ review.text }}</td>
                 <td>
-                  {% if stall.photo != "" %}
-                  <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}">
+                  {% if review.photo != "" %}
+                  <aref="{{ review.photo }}" target="_blank"><img class = "itemimage" src="{{ review.photo }}" alt="{{ review.stallname }}">
                   {% endif %}
                 </td>
-                <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
+                <td>{{ review.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
               </tr>
               {% endfor %}
             </tbody>

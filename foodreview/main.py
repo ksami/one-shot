@@ -134,8 +134,9 @@ class Display(webapp2.RequestHandler):
 class AddReview(webapp2.RequestHandler):
   def get(self):
 	#if self.request.get('user_name') != "":
-		template = jinja_environment.get_template('add.html')
-		self.response.out.write(template.render())
+	template_values = {'string' : 'Hello World!'}
+	template = jinja_environment.get_template('add.html')
+	self.response.out.write(template.render(template_values))
 	#else:
 	#	self.redirect(self.request.host_url)
 
