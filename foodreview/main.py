@@ -158,7 +158,7 @@ class Reviews(webapp2.RequestHandler):
 	template_values = {
 		'reviews' : query,
 	}
-	template = jinja_environment.get_template('search.html')
+	template = jinja_environment.get_template('reviews.html')
 	self.response.out.write(template.render(template_values)) 
 
 
