@@ -132,10 +132,11 @@ class Display(webapp2.RequestHandler):
 	self.response.out.write(template.render(template_values))
 
 class AddReview(webapp2.RequestHandler):
+
   def get(self):
 	#if self.request.get('user_name') != "":
 	template_values = {'string' : 'Hello World!'}
-	template = jinja_environment.get_template('add.html')
+	template = jinja_environment.get_template('addreview.html')
 	self.response.out.write(template.render(template_values))
 	#else:
 	#	self.redirect(self.request.host_url)
@@ -151,7 +152,6 @@ class AddReview(webapp2.RequestHandler):
 		review.stallname = self.request.get('stall_name')
 		review.put()
 		self.redirect('/reviews')
-	self.redirect(self.request.host_url)
 
 class Reviews(webapp2.RequestHandler):
   def get(self):
