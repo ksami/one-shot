@@ -48,7 +48,7 @@ class Reviews(db.Model):
   stallname = db.StringProperty()
   text = db.StringProperty(multiline=True)
   photo = db.StringProperty()
-  #date = db.DateTimeProperty(auto_now_add=True)
+  date = db.DateTimeProperty(auto_now_add=True)
 
 class AddList(webapp2.RequestHandler):
   """ Add an item to the datastore """
@@ -148,7 +148,7 @@ class AddReview(webapp2.RequestHandler):
 	review.userid = int(self.request.get('user_id'))
 	review.username = self.request.get('user_name')
 	review.text = self.request.get('review_text')
-	#review.date = review.date.replace(hour=(review.date.hour+8)%24)
+	review.date = review.date.replace(hour=(review.date.hour+8)%24)
 	review.photo = self.request.get('review_photo')
 	review.stallname = self.request.get('stall_name')
 	review.put()
@@ -157,7 +157,7 @@ class AddReview(webapp2.RequestHandler):
 
 class DisplayReviews(webapp2.RequestHandler):
   def get(self):
-	query = db.GqlQuery("SELECT * FROM Reviews")
+	query = db.GqlQuery("SELECT * FROM Reviews ")
 	template_values = {
 		'reviews' : query,
 	}
