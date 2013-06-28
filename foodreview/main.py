@@ -148,7 +148,7 @@ class AddReview(webapp2.RequestHandler):
 	review.userid = self.request.get('user_id')
 	review.username = self.request.get('user_name')
 	review.text = self.request.get('review_text')
-	review.date = review.date.replace(hour=(stall.date.hour+8)%24)
+	review.date = review.date.replace(hour=(review.date.hour+8)%24)
 	review.photo = self.request.get('review_photo')
 	review.stallname = self.request.get('stall_name')
 	review.put()
