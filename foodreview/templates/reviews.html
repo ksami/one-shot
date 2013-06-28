@@ -1,4 +1,4 @@
-<!-- Display each individual stall's details page for FoodReview -->
+<!-- Search page for FoodReview -->
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
@@ -50,42 +50,32 @@
         <!--///////////////////////////////////////-->
         <div class = "span10" id="page">
 
-          <div class="row-fluid">
-            <div class="hero-unit offset2"><h1>{{ stall.name }}</h1>
-            Test string is {{ string }}<br>
-            search variable is {{ search }}
-            </div>
-            <!--Tabs-->
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#Details" data-toggle="tab">Details</a></li>
-                <li class=""><a href="#Reviews" data-toggle="tab">Reviews</a></li>
-                <li class=""><a href="#Photos" data-toggle="tab">Photos</a></li>
-                <li class=""><a href="#Rate" data-toggle="tab">Rate</a></li>
-              </ul>
-              <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade in active" id="Details">
-                  <h1 style="font-size:50;">{{ stall.name }}</h1>
-                  <img class="offset1" src="{{  stall.photo  }}" style="max-height:500px; max-width:500px;">
-                  <p>
-                    Description of stall<br><br>
-                    {{ stall.description }}
-                  </p>
-                </div>
-                <div class="tab-pane fade" id="Reviews">
-                  <p>Reviews go here</p>
-                </div>
-                <div class="tab-pane fade" id="Photos">
-                  <p>
-                    Photos of stall<br><br>
-                    <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}">
-                  </p>
-                </div>
-                <div class="tab-pane fade" id="Rate">
-                  <p>Star Star Star Star Star</p>
-                </div>
-              </div>  <!--/tab-->
-
-          </div>
+          <form class="form-search" action = "/search" method = "post">
+            <b>Name of Stall</b>
+            <input type="text" class="input-medium search-query" name="stall_name_search">
+            <button type="submit" class="btn">Search</button>
+          </form>
+          <table class="table table-bordered table-striped" id="search-result">
+            <thead>
+              <tr><th>Name</th><th width="40%">Description</th><th width="30%">Photo</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+              {% for stall in stalls %}
+              <!--<tr onclick="document.location='/display?{{stall.name}}'">-->
+              <tr>
+                <td>{{ stall.name }}</td>
+                <td>{{ stall.description }}</td>
+                <td>
+                  {% if stall.photo != "" %}
+                  <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}">
+                  {% endif %}
+                </td>
+                <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <h2>Test string is {{ string }}</h2>
 
 
         </div>  <!--/span10-->

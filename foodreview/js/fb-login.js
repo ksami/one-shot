@@ -99,7 +99,7 @@ function testLogin() {
       var uid = response.authResponse.userID;
       var accessToken = response.authResponse.accessToken;
       togglePage();
-      console.log('uid is ' + uid + ' accessToken is ' + accessToken);
+      //console.log('uid is ' + uid + ' accessToken is ' + accessToken);
       $('#userid').val(uid);
 
       FB.api('/me', function(response) {

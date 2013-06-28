@@ -46,7 +46,7 @@ class Reviews(db.Model):
   username = db.StringProperty()
   userid = db.IntegerProperty()
   stallname = db.StringProperty()
-  review = db.StringProperty(multiline=True)
+  text = db.StringProperty(multiline=True)
   date = db.DateTimeProperty(auto_now_add=True)
 
 class AddList(webapp2.RequestHandler):
@@ -130,20 +130,36 @@ class Display(webapp2.RequestHandler):
 	}
 	template = jinja_environment.get_template('display.html')
 	self.response.out.write(template.render(template_values))
-#class AddReview(webapp2.RequestHandler):
-  #def get(self):
-	#if (self.request.get('user_name') != "")
-	#	template = jinja_environment.get_template('add.html')
-	#	self.response.out.write(template.render(template_values))
-	#else
-	#	self.redirect(self.request.host_url)
+	
+class AddReview(webapp2.RequestHandler):
+  def get(self):
+	if self.request.get('user_name') != "":
+		template = jinja_environment.get_template('add.html')
+		self.response.out.write(template.render(template_values))
+	else:
+		self.redirect(self.request.host_url)
 
-  #def post(self):
-  	#if (self.request.get('user_id') != None and self.request.get('user_name'))
-  	#	review = Reviews(key_name=self.request.get('user_name'))
-	#	review.userid = self.request.get('user_id')
-	#	review.username=self.request.get('user_name')
-	#	review.put()
+  def post(self):
+  	if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
+  		review = Reviews(key_name = self.request.get('user_id'))
+		review.userid = self.request.get('user_id')
+		review.username = self.request.get('user_name')
+		review.text = self.request.get('review_text')
+		review.date = review.date.replace(hour=(stall.date.hour+8)%24)
+		review.photo = self.request.get('review_photo')
+		review.stallname = self.request.get('stall_name')
+		review.put()
+		self.redirect('/reviews')
+	self.redirect(self.request.host_url)
+
+class Reviews(webapp2.RequestHandler):
+  def get(self):
+	query = db.GqlQuery("SELECT * FROM Reviews ORDER by date DESC")
+	template_values = {
+		'query' : query,
+	}
+	template = jinja_environment.get_template('search.html')
+	self.response.out.write(template.render(template_values)) 
 
 
 # if url ends with just / run the class MainPage
@@ -152,5 +168,6 @@ app = webapp2.WSGIApplication([
 	('/search', Searchf),
     ('/display.*', Display),
     ('/addlist', AddList),
-   # ('/addreview', AddReview)
+    ('/addreview', AddReview)
+    ('/reviews', Reviews)
 ], debug=True)
