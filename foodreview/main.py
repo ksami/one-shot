@@ -152,17 +152,12 @@ class AddReview(webapp2.RequestHandler):
 	review.photo = self.request.get('review_photo')
 	review.stallname = self.request.get('stall_name')
 	review.put()
-	query = db.GqlQuery("SELECT * FROM Reviews ORDER by date DESC")
-	template_values = {
-		'reviews' : query,
-	}
-	template = jinja_environment.get_template('reviews.html')
-	self.response.out.write(template.render(template_values)) 
+	self.redirect('/reviews')
 	#self.redirect(self.request.host_url)
 
 class DisplayReviews(webapp2.RequestHandler):
   def get(self):
-	query = db.GqlQuery("SELECT * FROM Reviews ORDER by date DESC")
+	query = db.GqlQuery("SELECT * FROM Reviews")
 	template_values = {
 		'reviews' : query,
 	}
