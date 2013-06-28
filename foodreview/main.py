@@ -130,14 +130,14 @@ class Display(webapp2.RequestHandler):
 	}
 	template = jinja_environment.get_template('display.html')
 	self.response.out.write(template.render(template_values))
-	
+
 class AddReview(webapp2.RequestHandler):
   def get(self):
-	if self.request.get('user_name') != "":
+	#if self.request.get('user_name') != "":
 		template = jinja_environment.get_template('add.html')
-		self.response.out.write(template.render(template_values))
-	else:
-		self.redirect(self.request.host_url)
+		self.response.out.write(template.render())
+	#else:
+	#	self.redirect(self.request.host_url)
 
   def post(self):
   	if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
@@ -156,7 +156,7 @@ class Reviews(webapp2.RequestHandler):
   def get(self):
 	query = db.GqlQuery("SELECT * FROM Reviews ORDER by date DESC")
 	template_values = {
-		'query' : query,
+		'reviews' : query,
 	}
 	template = jinja_environment.get_template('search.html')
 	self.response.out.write(template.render(template_values)) 
@@ -168,6 +168,6 @@ app = webapp2.WSGIApplication([
 	('/search', Searchf),
     ('/display.*', Display),
     ('/addlist', AddList),
-    ('/addreview', AddReview)
+    ('/addreview', AddReview),
     ('/reviews', Reviews)
 ], debug=True)
