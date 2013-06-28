@@ -47,6 +47,7 @@ class Reviews(db.Model):
   userid = db.IntegerProperty()
   stallname = db.StringProperty()
   text = db.StringProperty(multiline=True)
+  photo = db.StringProperty()
   date = db.DateTimeProperty(auto_now_add=True)
 
 class AddList(webapp2.RequestHandler):
@@ -143,7 +144,7 @@ class AddReview(webapp2.RequestHandler):
 
   def post(self):
   	#if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
-  	review = Reviews(key_name = str(self.request.get('user_id')))
+  	review = Reviews()
 	review.userid = self.request.get('user_id')
 	review.username = self.request.get('user_name')
 	review.text = self.request.get('review_text')
@@ -151,7 +152,12 @@ class AddReview(webapp2.RequestHandler):
 	review.photo = self.request.get('review_photo')
 	review.stallname = self.request.get('stall_name')
 	review.put()
-	self.redirect('/reviews')
+	query = db.GqlQuery("SELECT * FROM Reviews ORDER by date DESC")
+	template_values = {
+		'reviews' : query,
+	}
+	template = jinja_environment.get_template('reviews.html')
+	self.response.out.write(template.render(template_values)) 
 	#self.redirect(self.request.host_url)
 
 class Reviews(webapp2.RequestHandler):
