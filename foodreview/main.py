@@ -143,7 +143,7 @@ class AddReview(webapp2.RequestHandler):
 
   def post(self):
   	#if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
-  	review = Reviews(key_name = self.request.get('user_id'))
+  	review = Reviews(key_name = str(self.request.get('user_id')))
 	review.userid = self.request.get('user_id')
 	review.username = self.request.get('user_name')
 	review.text = self.request.get('review_text')
