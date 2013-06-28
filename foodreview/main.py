@@ -145,7 +145,7 @@ class AddReview(webapp2.RequestHandler):
   def post(self):
   	#if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
   	review = Reviews()
-	review.userid = self.request.get('user_id')
+	review.userid = int(self.request.get('user_id'))
 	review.username = self.request.get('user_name')
 	review.text = self.request.get('review_text')
 	#review.date = review.date.replace(hour=(review.date.hour+8)%24)
@@ -160,7 +160,7 @@ class AddReview(webapp2.RequestHandler):
 	self.response.out.write(template.render(template_values)) 
 	#self.redirect(self.request.host_url)
 
-class Reviews(webapp2.RequestHandler):
+class DisplayReviews(webapp2.RequestHandler):
   def get(self):
 	query = db.GqlQuery("SELECT * FROM Reviews ORDER by date DESC")
 	template_values = {
@@ -177,5 +177,5 @@ app = webapp2.WSGIApplication([
     ('/display.*', Display),
     ('/addlist', AddList),
     ('/addreview', AddReview),
-    ('/reviews', Reviews)
+    ('/reviews', DisplayReviews)
 ], debug=True)
