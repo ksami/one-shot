@@ -152,6 +152,7 @@ class AddReview(webapp2.RequestHandler):
 		review.stallname = self.request.get('stall_name')
 		review.put()
 		self.redirect('/reviews')
+	self.redirect(self.request.host_url)
 
 class Reviews(webapp2.RequestHandler):
   def get(self):
