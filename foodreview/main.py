@@ -143,7 +143,7 @@ class AddReview(webapp2.RequestHandler):
 	#	self.redirect(self.request.host_url)
 
   def post(self):
-  	#if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
+  	if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
   	review = Reviews()
 	review.userid = int(self.request.get('user_id'))
 	review.username = self.request.get('user_name')
@@ -156,10 +156,12 @@ class AddReview(webapp2.RequestHandler):
 	#self.redirect(self.request.host_url)
 
 class DisplayReviews(webapp2.RequestHandler):
+
   def get(self):
 	query = db.GqlQuery("SELECT * FROM Reviews ")
 	template_values = {
 		'reviews' : query,
+		'string' : 'Hello World!'
 	}
 	template = jinja_environment.get_template('reviews.html')
 	self.response.out.write(template.render(template_values)) 
