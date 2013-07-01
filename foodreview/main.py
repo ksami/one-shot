@@ -118,7 +118,7 @@ class Searchf(webapp2.RequestHandler):
 	template = jinja_environment.get_template('search.html')
 	self.response.out.write(template.render(template_values))
 
-class Display(webapp2.RequestHandler):
+class DisplayStalls(webapp2.RequestHandler):
 	# if someone tries to get me, i render the template called ... .hmtl
   def get(self):
 	title = self.request.query_string
@@ -171,7 +171,7 @@ class DisplayReviews(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
 	('/', MainPage),
 	('/search', Searchf),
-    ('/display.*', Display),
+    ('/display.*', DisplayStalls),
     ('/addlist', AddList),
     ('/addreview', AddReview),
     ('/reviews', DisplayReviews)

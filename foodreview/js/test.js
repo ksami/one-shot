@@ -14,9 +14,9 @@
 });*/
 
 
-function togglePage() {
+/*function togglePage() {
   $("#page").toggleClass("hidepage");
-}
+}*/
 
 
 function loginPlease() {
