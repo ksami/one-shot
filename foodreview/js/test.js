@@ -1,13 +1,13 @@
 // Self-written js/jquery testing nia
 
-(function($) {
+/*(function($) {
 
     // all a tags on hover
     $("#featured").hover(function() {
         $(this).toggleClass("hidepage");
     });
   
-})(jQuery);
+})(jQuery);*/
 
 /*$(function () {
   $('#userid').val(testLogin());
