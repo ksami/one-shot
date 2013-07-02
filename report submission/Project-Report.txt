@@ -1,0 +1,66 @@
+***  NUS Food Review (hungrynus) ***  
+
+<-- First Sprint -->
+  
+  This project is done at the /Vostok/ level.  
+  
+  The aim of this project is to develop a database of the food stalls available in NUS and allow people to review the food. The inspiration is from food review websites such as hungrygowhere but with the target users being students, staff and anyone else visiting NUS.  
+  
+  The main features in the mockup are the homepage, the search page which allows users to search for a stall or type of food and the review page which allows users to add reviews for each stall.  
+  
+  For the next sprint, we will implement the following features:  
+  
+  1.	The homepage which displays top rated stalls.  
+  
+  2.	The search page for searching for stalls or types of food.  
+  
+  3.	The review page for public users who do not wish to log in (only able to rate).  
+  
+  4.	The review page for logged in users (able to add photos, user experience, rate).  
+  
+The completion of the review page for logged in users may have to extend into the second sprint.  
+  
+  
+  Response to peer feedback
+  
+  Thanks to Considered Harmful, People Finder and TortoiseNpenguin for the feedback.
+
+  We agree that since there is a similar app out there, we will have to differentiate ourselves. We will probably be focusing on the social part instead, ie. the reviews and sharing etc.
+
+  We will not be trying to list the stall's entire menu since we don't think many people will bother that much about it. Besides, the effort required to obtain and maintain such information is too much for 2 people. The stall's type of cuisine and reviewers' photos of the food should be enough for people to decide if they want to eat there.
+
+  Thanks to People Finder for recommending a site for photos to us but unfortunately that site is outdated :( For the photos of the stallfronts themselves, NUS OED has photos of those outside of canteens. We will go around to the canteens to take photos if we deem it necessary.
+
+  For the other features such as advertising or social integration, we will leave it for a later time as our focus for this sprint is in getting the site up and running.
+
+  Hence, our feature list for this sprint remains unchanged.
+
+<-- Second Sprint -->
+
+Features that we managed to implement:
+
+  1. A homepage with a basic skeleton
+  
+  2. Add, Search and Display page for each stall with search by keyword function
+
+  3. Add and Display page for reviews
+
+Features to be implemented in next sprint:
+
+  1. Enable rating of reviews as well as display reviews of a particular user (e.g the user himself)
+
+  2. Integrate the display of reviews of a stall with the stall's information
+
+  3. Upload photos from the user directly instead of using URLs
+ 
+  4. If possible, implement stall of the month on the homepage
+  
+  5. If possible, enable searching by tags and categories 
+
+Issues:
+
+  1. The Add and AddReview page may not work sometimes even after you are logged in. The form does not show          up after the page is loaded.
+
+  2. Content on the website and user flow has not yet been done. The layout of the website is still messy as we are still just testing out what we can do.
+
+Prototype website: http://hungrynus.appspot.com/
