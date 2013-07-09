@@ -75,6 +75,8 @@ function verifyLogout() {
   FB.logout(function(response) {
       // Person is now logged out
       console.log(response.name + ' is now logged out.');
+      //Redirect to homepage here...
+      window.location.assign("/");
   });
 }
 

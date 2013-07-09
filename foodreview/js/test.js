@@ -1,13 +1,10 @@
 // Self-written js/jquery testing nia
 
-/*(function($) {
-
-    // all a tags on hover
-    $("#featured").hover(function() {
-        $(this).toggleClass("hidepage");
-    });
-  
-})(jQuery);*/
+//tooltip values for ratings
+(function($) {
+   var tooltipvalues = ['what is this...', 'ugh', 'eww', 'won\'t be back', 'huh', 'hmm', 'okay', 'not bad', 'ooh', 'woah', 'I want it now!', 'GIVE IT TO ME'];
+    $("#ratingInput").bind('over', function (event, value) { $(this).attr('title', tooltipvalues[value*2-1]); });
+})(jQuery);
 
 /*$(function () {
   $('#userid').val(testLogin());
