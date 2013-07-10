@@ -58,13 +58,15 @@
           </form>-->
           <table class="table table-bordered table-striped">
             <thead>
-              <tr><th>Name</th><th width="40%">Review</th><th width="30%">Photo</th><th>Date</th></tr>
+              <tr><th>Name</th><th width="30%">Review</th><th>Rating</th><th>Tags</th><th width="30%">Photo</th><th>Date</th></tr>
             </thead>
             <tbody>
               {% for review in reviews %}
               <tr>
                 <td>{{ review.stallname }}</td>
                 <td>{{ review.text }}</td>
+                <td>{{ review.rating }}</td> <!--add the stars here, use string for value cos might have eg 3.5 int not impt-->
+                <td>{{ review.tags }}</td>  <!--add the tags box here, make read only, it will split the tags based on commas-->
                 <td>
                   {% if review.photo != "" %}
                   <aref="{{ review.photo }}" target="_blank"><img class = "itemimage" src="{{ review.photo }}" alt="{{ review.stallname }}">

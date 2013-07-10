@@ -145,17 +145,17 @@ class AddReview(webapp2.RequestHandler):
 	#	self.redirect(self.request.host_url)
 
   def post(self):
-  	if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
-  		review = Reviews()
-		review.userid = int(self.request.get('user_id'))
-		review.username = self.request.get('user_name')
-		review.text = self.request.get('review_text')
-		review.date = review.date.replace(hour=(review.date.hour+8)%24)
-		review.photo = self.request.get('review_photo')
-		review.stallname = self.request.get('stall_name')
-		review.tags = self.request.get('review_tags')
-		review.rating = self.request.get('review_rating')
-		review.put()
+  	#if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
+	review = Reviews()
+	#review.userid = int(self.request.get('user_id'))
+	review.username = self.request.get('user_name')
+	review.text = self.request.get('review_text')
+	review.date = review.date.replace(hour=(review.date.hour+8)%24)
+	review.photo = self.request.get('review_photo')
+	review.stallname = self.request.get('stall_name')
+	review.tags = self.request.get('review_tags')
+	review.rating = int(self.request.get('review_rating'))
+	review.put()
 	self.redirect('/reviews')
 	#self.redirect(self.request.host_url)
 
