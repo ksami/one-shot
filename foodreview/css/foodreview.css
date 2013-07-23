@@ -164,6 +164,6 @@ div#page, #page2 {
   cursor: hand;
 }
 
-.hidepage {
+/*.hidepage {
   visibility: hidden;
 }

@@ -145,6 +145,7 @@ class AddReview(webapp2.RequestHandler):
 	#	self.redirect(self.request.host_url)
 
   def post(self):
+
   	#if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
 	review = Reviews()
 	#review.userid = int(self.request.get('user_id'))
@@ -156,6 +157,7 @@ class AddReview(webapp2.RequestHandler):
 	review.tags = self.request.get('review_tags')
 	review.rating = int(self.request.get('review_rating'))
 	review.put()
+
 	self.redirect('/reviews')
 	#self.redirect(self.request.host_url)
 
@@ -169,6 +171,28 @@ class DisplayReviews(webapp2.RequestHandler):
 	}
 	template = jinja_environment.get_template('reviews.html')
 	self.response.out.write(template.render(template_values)) 
+  
+  def post(self):
+  	query = db.GqlQuery("SELECT * FROM Reviews ORDER BY date DESC")
+	searchstring = self.request.get('review_search')
+	searchresult = []
+	for x in query:
+	 	if ( searchstring in x.username ):
+	 		review = Reviews()
+	 		review.stallname = x.stallname
+	 		#changes the time to GMT+8
+	 		review.text = x.text
+	 		review.date = x.date
+			review.photo = x.photo
+	 		searchresult.append(review)
+	template_values = {
+		'reviews' : searchresult,
+		'string' : "Hello World!"
+	}
+	template = jinja_environment.get_template('reviews.html')
+	#self.response.out.write(template.render(template_values))
+	#for x in query:
+	#	self.response.out.write(x.username)
 
 
 # if url ends with just / run the class MainPage
