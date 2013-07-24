@@ -155,7 +155,7 @@ class AddReview(webapp2.RequestHandler):
 	review.photo = self.request.get('review_photo')
 	review.stallname = self.request.get('stall_name')
 	review.tags = self.request.get('review_tags')
-	review.rating = self.request.get('review_rating')
+	review.rating = str(self.request.get('review_rating'))
 	review.put()
 
 	self.redirect('/reviews')
@@ -184,7 +184,7 @@ class DisplayReviews(webapp2.RequestHandler):
 	 		review.text = x.text
 	 		review.date = x.date
 	 		review.rating = x.rating
-	 		review.tags = x.tags #WTHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+	 		review.tags = x.tags
 			review.photo = x.photo
 	 		searchresult.append(review)
 	template_values = {
