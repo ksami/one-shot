@@ -10,6 +10,7 @@
   <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
   <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
   <link href="../flat-ui/css/flat-ui.css" rel="stylesheet">
+  <link href="../css/rateit.css" rel="stylesheet">
   <link href="../css/foodreview.css" rel="stylesheet">
 </head>
 
@@ -65,13 +66,14 @@
               <tr>
                 <td>{{ review.stallname }}</td>
                 <td>{{ review.text }}</td>
+
+                <td>  <!--rating-->
+                  <div class="rateit" data-rateit-value="{{review.rating}}" data-rateit-max="6" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                </td>
+
                 <td>
-                  <!--Rating not working-->
-                  <!--<div class="rateit" data-rateit-value="{{review.rating}} data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                  </div>-->
-              <!--/rating-->
-                </td> <!--add the stars here, use string for value cos might have eg 3.5 now string-->
-                <td>{{ review.tags }}</td>  <!--add the tags box here, make read only, it will split the tags based on commas-->
+                  <input class="tagsinput" value="{{review.tags}}"></div>
+                </td>  <!--add the tags box here, make read only, it will split the tags based on commas working on new tags-->
                 <td>
                   {% if review.photo != "" %}
                   <aref="{{ review.photo }}" target="_blank"><img class = "itemimage" src="{{ review.photo }}" alt="{{ review.stallname }}">
@@ -135,6 +137,7 @@
   <script src="http://vjs.zencdn.net/c/video.js"></script>
   <script src="../flat-ui/js/application.js"></script>
 
+  <script src="../js/jquery.rateit.js"></script>
   <script src="../js/test.js"></script>
 </body>
 </html>
