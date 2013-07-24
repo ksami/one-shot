@@ -1,14 +1,17 @@
 // Self-written js/jquery testing nia
 
-//tooltip values for ratings
 (function($) {
+   //tooltip values for ratings
    var tooltipvalues = ['what is this...', 'ugh', 'eww', 'won\'t be back', 'huh', 'hmm', 'okay', 'not bad', 'ooh', 'woah', 'I want it now!', 'GIVE IT TO ME'];
     $("#ratingInput").bind('over', function (event, value) { $(this).attr('title', tooltipvalues[value*2-1]); });
+
+    //tags
+    $('#tagsInput').tagit();
 })(jQuery);
 
-/*$(function () {
-  $('#userid').val(testLogin());
-});*/
+// $(function () {
+//   $('#userid').val(testLogin());
+// });
 
 
 function togglePage() {
