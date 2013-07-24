@@ -65,7 +65,12 @@
               <tr>
                 <td>{{ review.stallname }}</td>
                 <td>{{ review.text }}</td>
-                <td>{{ review.rating }}</td> <!--add the stars here, use string for value cos might have eg 3.5 int not impt-->
+                <td>
+                  <!--Rating-->
+                  <div class="rateit" data-rateit-value="{{ review.rating }}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                  </div>
+              <!--/rating-->
+                </td> <!--add the stars here, use string for value cos might have eg 3.5 now string-->
                 <td>{{ review.tags }}</td>  <!--add the tags box here, make read only, it will split the tags based on commas-->
                 <td>
                   {% if review.photo != "" %}

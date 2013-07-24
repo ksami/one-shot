@@ -48,7 +48,7 @@ class Reviews(db.Model):
   stallname = db.StringProperty()
   text = db.StringProperty(multiline=True)
   photo = db.StringProperty()
-  rating = db.IntegerProperty()
+  rating = db.StringProperty()
   tags = db.StringProperty()
   date = db.DateTimeProperty(auto_now_add=True)
 
@@ -155,7 +155,7 @@ class AddReview(webapp2.RequestHandler):
 	review.photo = self.request.get('review_photo')
 	review.stallname = self.request.get('stall_name')
 	review.tags = self.request.get('review_tags')
-	review.rating = int(self.request.get('review_rating'))
+	review.rating = self.request.get('review_rating')
 	review.put()
 
 	self.redirect('/reviews')
@@ -183,6 +183,8 @@ class DisplayReviews(webapp2.RequestHandler):
 	 		#changes the time to GMT+8
 	 		review.text = x.text
 	 		review.date = x.date
+	 		review.rating = x.rating
+	 		review.tags = x.tags #WTHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 			review.photo = x.photo
 	 		searchresult.append(review)
 	template_values = {
