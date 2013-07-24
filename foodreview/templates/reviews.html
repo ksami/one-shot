@@ -59,26 +59,26 @@
           </form>
           <table class="table table-bordered table-striped">
             <thead>
-              <tr><th>Name</th><th width="30%">Review</th><th>Rating</th><th>Tags</th><th width="30%">Photo</th><th>Date</th></tr>
+              <tr><th>Stall Name</th><th width="30%">Photo</th><th width="30%">Review</th><th>Rating</th><th>Date</th></tr>
             </thead>
             <tbody>
               {% for review in reviews %}
               <tr>
                 <td>{{ review.stallname }}</td>
-                <td>{{ review.text }}</td>
 
-                <td>  <!--rating-->
-                  <div class="rateit" data-rateit-value="{{review.rating}}" data-rateit-max="6" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                </td>
-
-                <td>
-                  {{review.tags}}
-                </td>  <!--add the tags box here, make read only, it will split the tags based on commas working on new tags-->
                 <td>
                   {% if review.photo != "" %}
                   <aref="{{ review.photo }}" target="_blank"><img class = "itemimage" src="{{ review.photo }}" alt="{{ review.stallname }}">
                   {% endif %}
                 </td>
+
+                <td>{{ review.text }}</td>
+                <!--text should be truncated, click to access individual review-->
+
+                <td>  <!--rating-->
+                  <div class="rateit" data-rateit-value="{{review.rating}}" data-rateit-max="6" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                </td>
+
                 <td>{{ review.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
               </tr>
               {% endfor %}

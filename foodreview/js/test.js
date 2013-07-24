@@ -7,6 +7,9 @@
 
     //tags
     $('#tagsInput').tagit();
+    // $('#readOnlyTags').tagit({
+    //     readOnly: true
+    // });
 })(jQuery);
 
 // $(function () {
