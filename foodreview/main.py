@@ -155,7 +155,6 @@ class AddReview(webapp2.RequestHandler):
 	#	self.redirect(self.request.host_url)
 
   def post(self):
-<<<<<<< HEAD
 
   	if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
 		review = Reviews()
