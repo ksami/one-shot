@@ -43,9 +43,9 @@ class Stalls(db.Model):
 
 class Reviews(db.Model):
   """Models a review with username, userid, name of stall, review and date"""
-  username = db.StringProperty(required=True)
-  userid = db.IntegerProperty(required=True)
-  stallname = db.StringProperty(required=True)
+  username = db.StringProperty()
+  userid = db.IntegerProperty()
+  stallname = db.StringProperty()
   text = db.StringProperty(multiline=True)
   photo = db.StringProperty()
   date = db.DateTimeProperty(auto_now_add=True)
@@ -173,21 +173,22 @@ class DisplayReviews(webapp2.RequestHandler):
   
   def post(self):
   	query = db.GqlQuery("SELECT * FROM Reviews ORDER BY date DESC")
-	searchstring = self.request.get('review_search')
-	searchresult = []
-	for x in query:
-	 	if ( searchstring in x.username ):
-	 		review = Reviews()
-	 		review.stallname = x.stallname
-	 		#changes the time to GMT+8
-	 		review.text = x.text
-	 		review.date = x.date
-			review.photo = x.photo
-	 		searchresult.append(review)
-	template_values = {
-		'reviews' : searchresult,
-		'string' : "Hello World!"
-	}
+  	searchresult = []
+  	if (self.request.get('review_search') != ""):
+		searchstring = self.request.get('review_search')
+		for x in query:
+		 	if ( searchstring in x.username ):
+		 		review = Reviews()
+		 		review.stallname = x.stallname
+		 		#changes the time to GMT+8
+		 		review.text = x.text
+		 		review.date = x.date
+				review.photo = x.photo
+		 		searchresult.append(review)
+		template_values = {
+			'reviews' : searchresult,
+			'string' : "Hello World!"
+		}
 	template = jinja_environment.get_template('reviews.html')
 	self.response.out.write(template.render(template_values))
 	#for x in query:
