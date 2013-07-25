@@ -40,6 +40,8 @@ class Stalls(db.Model):
   description = db.StringProperty(multiline=True)
   date = db.DateTimeProperty(auto_now_add=True)
   photo = db.StringProperty()
+  tags = db.StringProperty()
+  rating = db.StringProperty()
 
 class Reviews(db.Model):
   """Models a review with username, userid, name of stall, review and date"""
@@ -71,6 +73,8 @@ class AddList(webapp2.RequestHandler):
 		stall.description = self.request.get('stall_desc')
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
 		stall.photo = self.request.get('stall_photo')
+		stall.rating = "0"
+		stall.tags = ""
 
 
 		######  Get username in string and userid in int here   #####
@@ -112,6 +116,8 @@ class Searchf(webapp2.RequestHandler):
 	 		stall.description = x.description
 	 		stall.date = x.date
 			stall.photo = x.photo
+			stall.tags = x.tags
+			stall.rating = x.rating
 	 		searchresult.append(stall)
 	template_values = {
 		'stalls' : searchresult,
