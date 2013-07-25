@@ -43,9 +43,9 @@ class Stalls(db.Model):
 
 class Reviews(db.Model):
   """Models a review with username, userid, name of stall, review and date"""
-  username = db.StringProperty()
-  userid = db.IntegerProperty()
-  stallname = db.StringProperty()
+  username = db.StringProperty(required=True)
+  userid = db.IntegerProperty(required=True)
+  stallname = db.StringProperty(required=True)
   text = db.StringProperty(multiline=True)
   photo = db.StringProperty()
   date = db.DateTimeProperty(auto_now_add=True)
@@ -136,7 +136,11 @@ class AddReview(webapp2.RequestHandler):
 
   def get(self):
 	#if self.request.get('user_name') != "":
-	template_values = {'string' : 'Hello World!'}
+	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
+	template_values = {
+		'string' : 'Hello World!',
+		'stalls' : query
+	}
 	template = jinja_environment.get_template('addreview.html')
 	self.response.out.write(template.render(template_values))
 	#else:
@@ -145,13 +149,13 @@ class AddReview(webapp2.RequestHandler):
   def post(self):
   	if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('review_text') != ""):
   	#if (self.request.get('review_text') != ""):
-  		review = Reviews()
+  		review = Reviews(self.request.get('stall_name'))
+		review.stallname = self.request.get('stall_name')
 		review.userid = int(self.request.get('user_id'))
 		review.username = self.request.get('user_name')
 		review.text = self.request.get('review_text')
 		review.date = review.date.replace(hour=(review.date.hour+8)%24)
 		review.photo = self.request.get('review_photo')
-		review.stallname = self.request.get('stall_name')
 		review.put()
 	self.redirect('/reviews')
 	#self.redirect(self.request.host_url)
