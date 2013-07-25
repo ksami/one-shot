@@ -189,7 +189,7 @@ class DisplayReviews(webapp2.RequestHandler):
 		'string' : "Hello World!"
 	}
 	template = jinja_environment.get_template('reviews.html')
-	#self.response.out.write(template.render(template_values))
+	self.response.out.write(template.render(template_values))
 	#for x in query:
 	#	self.response.out.write(x.username)
 
