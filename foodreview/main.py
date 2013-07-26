@@ -40,6 +40,8 @@ class Stalls(db.Model):
   description = db.StringProperty(multiline=True)
   date = db.DateTimeProperty(auto_now_add=True)
   photo = db.StringProperty()
+  tags = db.StringProperty()
+  rating = db.StringProperty()
 
 class Reviews(db.Model):
   """Models a review with username, userid, name of stall, review and date"""
@@ -48,6 +50,8 @@ class Reviews(db.Model):
   stallname = db.StringProperty()
   text = db.StringProperty(multiline=True)
   photo = db.StringProperty()
+  rating = db.StringProperty()
+  tags = db.StringProperty()
   date = db.DateTimeProperty(auto_now_add=True)
 
 class AddList(webapp2.RequestHandler):
@@ -69,6 +73,8 @@ class AddList(webapp2.RequestHandler):
 		stall.description = self.request.get('stall_desc')
 		stall.date = stall.date.replace(hour=(stall.date.hour+8)%24)
 		stall.photo = self.request.get('stall_photo')
+		stall.rating = "0"
+		stall.tags = ""
 
 
 		######  Get username in string and userid in int here   #####
@@ -110,6 +116,8 @@ class Searchf(webapp2.RequestHandler):
 	 		stall.description = x.description
 	 		stall.date = x.date
 			stall.photo = x.photo
+			stall.tags = x.tags
+			stall.rating = x.rating
 	 		searchresult.append(stall)
 	template_values = {
 		'stalls' : searchresult,
@@ -158,6 +166,8 @@ class AddReview(webapp2.RequestHandler):
 		review.text = self.request.get('review_text')
 		review.date = review.date.replace(hour=(review.date.hour+8)%24)
 		review.photo = self.request.get('review_photo')
+		review.tags = self.request.get('review_tags')
+		review.rating = str(self.request.get('review_rating'))
 		review.put()
 	self.redirect('/reviews')
 	#self.redirect(self.request.host_url)

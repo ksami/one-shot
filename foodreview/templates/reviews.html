@@ -10,6 +10,7 @@
   <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
   <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
   <link href="../flat-ui/css/flat-ui.css" rel="stylesheet">
+  <link href="../css/rateit.css" rel="stylesheet">
   <link href="../css/foodreview.css" rel="stylesheet">
 </head>
 
@@ -59,18 +60,26 @@
           </form>
           <table class="table table-bordered table-striped">
             <thead>
-              <tr><th>Name</th><th width="40%">Review</th><th width="30%">Photo</th><th>Date</th></tr>
+              <tr><th>Stall Name</th><th width="30%">Photo</th><th width="30%">Review</th><th>Rating</th><th>Date</th></tr>
             </thead>
             <tbody>
               {% for review in reviews %}
               <tr>
                 <td>{{ review.stallname }}</td>
-                <td>{{ review.text }}</td>
+
                 <td>
                   {% if review.photo != "" %}
                   <aref="{{ review.photo }}" target="_blank"><img class = "itemimage" src="{{ review.photo }}" alt="{{ review.stallname }}">
                   {% endif %}
                 </td>
+
+                <td>{{ review.text }}</td>
+                <!--text should be truncated, click to access individual review-->
+
+                <td>  <!--rating-->
+                  <div class="rateit" data-rateit-value="{{review.rating}}" data-rateit-max="6" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                </td>
+
                 <td>{{ review.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
               </tr>
               {% endfor %}
@@ -129,6 +138,7 @@
   <script src="http://vjs.zencdn.net/c/video.js"></script>
   <script src="../flat-ui/js/application.js"></script>
 
+  <script src="../js/jquery.rateit.js"></script>
   <script src="../js/test.js"></script>
 </body>
 </html>

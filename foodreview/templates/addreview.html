@@ -10,6 +10,9 @@
   <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
   <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
   <link href="../flat-ui/css/flat-ui.css" rel="stylesheet">
+  <link href="../css/jquery.tagit.css" rel="stylesheet" type="text/css">
+  <link href="../css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+  <link href="../css/rateit.css" rel="stylesheet">
   <link href="../css/foodreview.css" rel="stylesheet">
   <script src="../flat-ui/js/jquery-1.8.3.min.js"></script>
   <script src="../js/fb-login.js"></script>
@@ -57,7 +60,7 @@
         <!--///////////////////////////////////////-->
         <!--//Page content goes inside the span10//-->
         <!--///////////////////////////////////////-->
-        <div class = "span10 hidepage" id="page">
+        <div class = "span10" id="page">
 
           <form class="form-search" action = "/addreview" method = "post">
             
@@ -111,12 +114,23 @@
               </div>
             </div>-->
 
+            <!--Rating-->
+            <div class="control-group row-fluid">
+              <div class="span3">
+                <label class="control-label" for="ratingInput"><strong>Rating</strong></label>
+                <div class="controls">
+                  <input type="range" min="0" max="6" value="0" step="0.5" id="ratingBacking" name="review_rating">
+                  <div class="rateit" data-rateit-resetable="false" data-rateit-min="0" data-rateit-max="6" data-rateit-backingfld="#ratingBacking" id="ratingInput"></div>
+                </div>
+              </div>
+            </div>  <!--/rating-->
+
             <!--Tags-->
             <div class="control-group row-fluid">
               <div class="span3">
                 <label class="control-label" for="tagsInput"><strong>Tags</strong></label>
                 <div class="controls">
-                  <input name="stall_tags" id="tagsInput" class="tagsinput" value="">
+                  <input name="review_tags" id="tagsInput" value="Hello, World!">
                 </div>
               </div>        
             </div>  <!--/tags-->
@@ -131,6 +145,8 @@
             </div>
           </form>
           <h2>Test string is {{ string }}</h2>
+
+
 
 
         </div>  <!--/span10-->
@@ -194,6 +210,8 @@
   <script src="http://vjs.zencdn.net/c/video.js"></script>-->
   <script src="../flat-ui/js/application.js"></script>
 
+  <script src="../js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/jquery.rateit.js"></script>
   <script src="../js/test.js"></script>
 </body>
 </html>
