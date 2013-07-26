@@ -119,15 +119,17 @@ class Searchf(webapp2.RequestHandler):
 	self.response.out.write(template.render(template_values))
 
 class DisplayStalls(webapp2.RequestHandler):
-	# if someone tries to get me, i render the template called ... .hmtl
+
   def get(self):
 	title = self.request.query_string
 	title = title.replace("%20", " ")
-	query = Stalls.get_by_key_name(title)
+	stall = Stalls.get_by_key_name(title)
+	query = db.GqlQuery("SELECT * FROM Reviews WHERE stallname = :1", title)
 	template_values = {
-		'stall' : query,
+		'stall' : stall,
 		'string' : "Hellooooo",
-		'search' : title
+		'search' : title,
+		'reviews' : query
 	}
 	template = jinja_environment.get_template('display.html')
 	self.response.out.write(template.render(template_values))
@@ -149,7 +151,7 @@ class AddReview(webapp2.RequestHandler):
   def post(self):
   	if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('review_text') != ""):
   	#if (self.request.get('review_text') != ""):
-  		review = Reviews(self.request.get('stall_name'))
+  		review = Reviews()
 		review.stallname = self.request.get('stall_name')
 		review.userid = int(self.request.get('user_id'))
 		review.username = self.request.get('user_name')
