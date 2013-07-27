@@ -132,7 +132,8 @@ class DisplayStalls(webapp2.RequestHandler):
 	title = self.request.query_string
 	title = title.replace("%20", " ")
 	stall = Stalls.get_by_key_name(title)
-	query = db.GqlQuery("SELECT * FROM Reviews WHERE stallname = :1", title)
+	query = db.GqlQuery("SELECT * FROM Reviews")
+	q.filter("stallname =", title)
 	template_values = {
 		'stall' : stall,
 		'string' : "Hellooooo",
