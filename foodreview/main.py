@@ -133,7 +133,7 @@ class DisplayStalls(webapp2.RequestHandler):
 	title = title.replace("%20", " ")
 	stall = Stalls.get_by_key_name(title)
 	query = db.GqlQuery("SELECT * FROM Reviews")
-	q.filter("stallname =", title)
+	query.filter("stallname =", title)
 	template_values = {
 		'stall' : stall,
 		'string' : "Hellooooo",
