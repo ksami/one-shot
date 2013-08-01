@@ -132,6 +132,18 @@
 	        s.parentNode.insertBefore(po, s);
 	    })();
 	</script>
+	<p id="demo"></p>
+
+	<script>
+	var myVar=setInterval(function(){myTimer()},1000);
+
+	function myTimer()
+	{
+	var d=new Date();
+	var t=d.toLocaleTimeString();
+	document.getElementById("demo").innerHTML=t;
+	}
+	</script>
 	<footer style="background-color:#7fff00;clear:both;text-align:center;height=40px">
 		<address> This is supposed to be address but what ever<br>
 				  Kenneth do one hohoho!<br>

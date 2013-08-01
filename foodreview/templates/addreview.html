@@ -67,9 +67,16 @@
             <div class="control-group row-fluid">
               <div class="span3">
                 <label class="control-label" for="nameInput"><strong>Name of Stall</strong></label>
-                <div class="controls">
-                  <input type="text" id="nameInput" class="input-medium search-query" name="stall_name">
+                <div>
+                  <select name="stall_name">
+                    {% for stall in stalls %}
+                      <option value="{{ stall.name }}">{{ stall.name }}</option>
+                    {% endfor %}
+                  </select>
                 </div>
+                <!--<div class="controls">
+                  <input type="text" id="nameInput" class="input-medium search-query" name="stall_name">
+                </div>-->
               </div>
             </div>
 
@@ -91,6 +98,8 @@
               </div>
             </div>
 
+           
+          
             <!--<div class="control-group">
               <label class="control-label" for="fileInput"><strong>File Input</strong></label>
               <div class="controls">

@@ -127,15 +127,18 @@ class Searchf(webapp2.RequestHandler):
 	self.response.out.write(template.render(template_values))
 
 class DisplayStalls(webapp2.RequestHandler):
-	# if someone tries to get me, i render the template called ... .hmtl
+
   def get(self):
 	title = self.request.query_string
 	title = title.replace("%20", " ")
-	query = Stalls.get_by_key_name(title)
+	stall = Stalls.get_by_key_name(title)
+	query = db.Query(Reviews)
+	query.filter("stallname =", title)
 	template_values = {
-		'stall' : query,
+		'stall' : stall,
 		'string' : "Hellooooo",
-		'search' : title
+		'search' : title,
+		'reviews' : query
 	}
 	template = jinja_environment.get_template('display.html')
 	self.response.out.write(template.render(template_values))
@@ -144,26 +147,29 @@ class AddReview(webapp2.RequestHandler):
 
   def get(self):
 	#if self.request.get('user_name') != "":
-	template_values = {'string' : 'Hello World!'}
+	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
+	template_values = {
+		'string' : 'Hello World!',
+		'stalls' : query
+	}
 	template = jinja_environment.get_template('addreview.html')
 	self.response.out.write(template.render(template_values))
 	#else:
 	#	self.redirect(self.request.host_url)
 
   def post(self):
-
-  	#if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('userreview') != ""):
-	review = Reviews()
-	#review.userid = int(self.request.get('user_id'))
-	review.username = self.request.get('user_name')
-	review.text = self.request.get('review_text')
-	review.date = review.date.replace(hour=(review.date.hour+8)%24)
-	review.photo = self.request.get('review_photo')
-	review.stallname = self.request.get('stall_name')
-	review.tags = self.request.get('review_tags')
-	review.rating = str(self.request.get('review_rating'))
-	review.put()
-
+  	if (self.request.get('user_id') != None and self.request.get('user_name') != "" and self.request.get('review_text') != ""):
+  	#if (self.request.get('review_text') != ""):
+  		review = Reviews()
+		review.stallname = self.request.get('stall_name')
+		review.userid = int(self.request.get('user_id'))
+		review.username = self.request.get('user_name')
+		review.text = self.request.get('review_text')
+		review.date = review.date.replace(hour=(review.date.hour+8)%24)
+		review.photo = self.request.get('review_photo')
+		review.tags = self.request.get('review_tags')
+		review.rating = str(self.request.get('review_rating'))
+		review.put()
 	self.redirect('/reviews')
 	#self.redirect(self.request.host_url)
 
@@ -180,26 +186,24 @@ class DisplayReviews(webapp2.RequestHandler):
   
   def post(self):
   	query = db.GqlQuery("SELECT * FROM Reviews ORDER BY date DESC")
-	searchstring = self.request.get('review_search')
-	searchresult = []
-	for x in query:
-	 	if ( searchstring in x.username ):
-	 		review = Reviews()
-	 		review.stallname = x.stallname
-	 		#changes the time to GMT+8
-	 		review.text = x.text
-	 		review.date = x.date
-	 		review.rating = x.rating
-	 		review.tags = x.tags
-			review.photo = x.photo
-	 		searchresult.append(review)
-	template_values = {
-		'reviews' : searchresult,
-		'string' : "Hello World!"
-	}
+  	searchresult = []
+  	if (self.request.get('review_search') != ""):
+		searchstring = self.request.get('review_search')
+		for x in query:
+		 	if ( searchstring in x.username ):
+		 		review = Reviews()
+		 		review.stallname = x.stallname
+		 		#changes the time to GMT+8
+		 		review.text = x.text
+		 		review.date = x.date
+				review.photo = x.photo
+		 		searchresult.append(review)
+		template_values = {
+			'reviews' : searchresult,
+			'string' : "Hello World!"
+		}
 	template = jinja_environment.get_template('reviews.html')
-	#self.response.out.write(template.render(template_values))
-	#for x in query:
+	self.response.out.write(template.render(template_values))
 	#	self.response.out.write(x.username)
 
 
