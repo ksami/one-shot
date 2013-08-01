@@ -42,6 +42,7 @@ class Stalls(db.Model):
   photo = db.StringProperty()
   tags = db.StringProperty()
   rating = db.StringProperty()
+  numreviews = db.IntegerProperty()
 
 class Reviews(db.Model):
   """Models a review with username, userid, name of stall, review and date"""
@@ -75,6 +76,7 @@ class AddList(webapp2.RequestHandler):
 		stall.photo = self.request.get('stall_photo')
 		stall.rating = "0"
 		stall.tags = ""
+		stall.numreviews = 0
 
 
 		######  Get username in string and userid in int here   #####
@@ -114,6 +116,7 @@ class Searchf(webapp2.RequestHandler):
 			stall.photo = x.photo
 			stall.tags = x.tags
 			stall.rating = x.rating
+			stall.numreviews = x.numreviews
 	 		searchresult.append(stall)
 	template_values = {
 		'stalls' : searchresult,
@@ -165,6 +168,14 @@ class AddReview(webapp2.RequestHandler):
 		review.photo = self.request.get('review_photo')
 		review.tags = self.request.get('review_tags')
 		review.rating = str(self.request.get('review_rating'))
+		stall = Stalls.get_by_key_name(review.stallname)
+		averagesr = float(str(stall.rating))  ################ERROR HERE###########################
+		rr = float(review.rating)
+		totalsr = averagesr * stall.numreviews
+		stall.numreviews = stall.numreviews + 1
+		averagesr = (totalsr+rr)/stall.numreviews  #average rating
+		stall.rating = str(averagesr)
+		stall.put()
 		review.put()
 	self.redirect('/reviews')
 	#self.redirect(self.request.host_url)
