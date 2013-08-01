@@ -67,7 +67,7 @@
                 <td>{{ stall.description }}</td>
                 <td>
                   {% if stall.photo != "" %}
-                  <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}">
+                  <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}" width="250" height="250">
                   {% endif %}
                 </td>
                 <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
