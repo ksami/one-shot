@@ -76,7 +76,11 @@
                     {{ stall.description }}
                   </p>
                   <div class="span3">
-                    <input id="readOnlyTags" value="{{stall.tags}}">
+                    <input id="readOnlyTags" value="
+                    {% for review in reviews %}
+                      {{review.tags}},
+                    {% endfor %}
+                    {{stall.tags}}">
                   </div>
                 </div>
                 <div class="tab-pane fade" id="Reviews">
