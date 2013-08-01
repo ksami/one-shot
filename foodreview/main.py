@@ -84,10 +84,6 @@ class AddList(webapp2.RequestHandler):
 		#stall.username=self.request.get('user_name')
 
 
-
-
-
-
 		#stall.photo = db.Blob(open(self.request.get('stall_photo'),"rb").read())
 		#img = images.resize(self.request.get('stall_photo'),200, 200)
 		#stall.photo=db.Blob(img)  # bypass here. cannot use str.
@@ -108,7 +104,7 @@ class Searchf(webapp2.RequestHandler):
 
   def post(self):
 	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
-	searchstring = self.request.get('stall_name_search')
+	searchstring = str.lower(self.request.get('stall_name_search'))
 	searchresult = []
 	for x in query:
 	 	if ( searchstring in x.name ):

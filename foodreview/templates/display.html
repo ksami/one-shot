@@ -70,11 +70,12 @@
               <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="Details">
                   <h1 style="font-size:50;">{{ stall.name }}</h1>
-                  <img class="offset1" src="{{  stall.photo  }}" style="max-height:500px; max-width:500px;">
+                  <img class="offset1" src="{{  stall.photo  }}" style="max-height:250px; max-width:250px;">
                   <p>
                     Description of stall<br><br>
                     {{ stall.description }}
                   </p>
+                  
                   <div class="span3">
                     <input id="readOnlyTags" value="
                     {% for review in reviews %}
@@ -82,6 +83,7 @@
                     {% endfor %}
                     {{stall.tags}}">
                   </div>
+
                 </div>
                 <div class="tab-pane fade" id="Reviews">
                   <p>Reviews go here</p>
@@ -96,7 +98,7 @@
 
                         <td>
                           {% if review.photo != "" %}
-                          <aref="{{ review.photo }}" target="_blank"><img class = "itemimage" src="{{ review.photo }}" alt="{{ review.stallname }}">
+                          <aref="{{ review.photo }}" target="_blank"><img class = "itemimage" src="{{ review.photo }}" alt="{{ review.stallname }}" style="max-height:250px; max-width:250px;">
                           {% endif %}
                         </td>
 
@@ -116,7 +118,7 @@
                 <div class="tab-pane fade" id="Photos">
                   <p>
                     Photos of stall<br><br>
-                    <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}">
+                    <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}" style="max-height:250px; max-width:250px;">
                   </p>
                 </div>
                 <div class="tab-pane fade" id="Rate">
