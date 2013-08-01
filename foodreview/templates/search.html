@@ -58,18 +58,24 @@
           </form>
           <table class="table table-bordered table-striped" id="search-result">
             <thead>
-              <tr><th>Name</th><th width="40%">Description</th><th width="30%">Photo</th><th>Date</th></tr>
+              <tr><th>Name</th><th width="20%">Description</th><th width="20%">Photo</th><th>Rating</th><th width="10%">Date</th></tr>
             </thead>
             <tbody>
               {% for stall in stalls %}
               <tr onclick="document.location='/display?{{stall.name}}'">
                 <td>{{ stall.name }}</td>
                 <td>{{ stall.description }}</td>
+                
                 <td>
                   {% if stall.photo != "" %}
                   <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}" style="max-height:250px; max-width:250px;">
                   {% endif %}
                 </td>
+                
+                <td>
+                  <div class="rateit" data-rateit-value="{{stall.rating}}" data-rateit-max="6" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                </td>
+                
                 <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
               </tr>
               {% endfor %}

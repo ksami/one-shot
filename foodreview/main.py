@@ -169,7 +169,7 @@ class AddReview(webapp2.RequestHandler):
 		review.tags = self.request.get('review_tags')
 		review.rating = str(self.request.get('review_rating'))
 		stall = Stalls.get_by_key_name(review.stallname)
-		averagesr = float(str(stall.rating))  ################ERROR HERE###########################
+		averagesr = float(stall.rating)  ################ERROR HERE###########################
 		rr = float(review.rating)
 		totalsr = averagesr * stall.numreviews
 		stall.numreviews = stall.numreviews + 1
