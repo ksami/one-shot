@@ -16,6 +16,13 @@
 //   $('#userid').val(testLogin());
 // });
 
+$("#addlist").click(function() {
+  console.log("Handler for .click() called.");
+});
+
+$("#addreview").click(function() {
+  console.log("Handler for .click() called.");
+});
 
 function togglePage() {
   $("#page").toggleClass("hidepage");
