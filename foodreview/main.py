@@ -198,13 +198,14 @@ class DisplayReviews(webapp2.RequestHandler):
 		searchstring = self.request.get('review_search')
 		for x in query:
 		 	if ( searchstring in x.username ):
-		 		review = Reviews()
-		 		review.stallname = x.stallname
+		 		#review = Reviews()
+		 		#review.stallname = x.stallname
 		 		#changes the time to GMT+8
-		 		review.text = x.text
-		 		review.date = x.date
-				review.photo = x.photo
-		 		searchresult.append(review)
+		 		#review.text = x.text
+		 		#review.date = x.date
+				#review.photo = x.photo
+				#review.rating = x.rating
+		 		searchresult.append(x)
 		template_values = {
 			'reviews' : searchresult,
 			'string' : "Hello World!"
