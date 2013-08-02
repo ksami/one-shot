@@ -121,7 +121,7 @@ class DisplayStalls(webapp2.RequestHandler):
   def get(self):
 
 	title = self.request.query_string
-	title = unquote(title).decode('utf-8')
+	title = urllib2.unquote(title).decode('utf-8')
 	stall = Stalls.get_by_key_name(title)
 	query = db.Query(Reviews)
 	query.filter("stallname =", title)
