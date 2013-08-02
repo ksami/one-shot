@@ -104,7 +104,7 @@ class Searchf(webapp2.RequestHandler):
 
   def post(self):
 	query = db.GqlQuery("SELECT * FROM Stalls ORDER BY date DESC")
-	searchstring = str.lower(self.request.get('stall_name_search'))
+	searchstring = self.request.get('stall_name_search')
 	searchresult = []
 	for x in query:
 	 	if ( searchstring in x.name ):
@@ -169,7 +169,7 @@ class AddReview(webapp2.RequestHandler):
 		review.tags = self.request.get('review_tags')
 		review.rating = str(self.request.get('review_rating'))
 		stall = Stalls.get_by_key_name(review.stallname)
-		averagesr = float(stall.rating)  ################ERROR HERE###########################
+		averagesr = float(stall.rating)
 		rr = float(review.rating)
 		totalsr = averagesr * stall.numreviews
 		stall.numreviews = stall.numreviews + 1
