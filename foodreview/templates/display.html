@@ -35,7 +35,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href = "/"><i class = "icon-home icon-white"></i> Home</a></li>
-              <li><a href = "/addlist"><i class = "icon-plus icon-white"></i> Add</a></li>
+<!--               <li><a href = "/addlist"><i class = "icon-plus icon-white"></i> Add</a></li> -->
               <li><a href = "/search"><i class = "icon-book icon-white"></i> Search</a></li>
               <li><a href = "/addreview"><i class = "icon-plus icon-white"></i> AddReview</a></li>
               <li><a href = "/reviews"><i class = "icon-book icon-white"></i> Reviews</a></li>
@@ -57,22 +57,22 @@
 
           <div class="row-fluid">
             <div class="hero-unit offset2"><h1>{{ stall.name }}</h1>
-            Test string is {{ string }}<br>
-            search variable is {{ search }}
+<!--             Test string is {{ string }}<br>
+            search variable is {{ search }} -->
+            <div class="rateit" data-rateit-value="{{stall.rating}}" data-rateit-max="6" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
             </div>
             <!--Tabs-->
               <ul class="nav nav-tabs">
                 <li class="active"><a href="#Details" data-toggle="tab">Details</a></li>
                 <li class=""><a href="#Reviews" data-toggle="tab">Reviews</a></li>
                 <li class=""><a href="#Photos" data-toggle="tab">Photos</a></li>
-                <li class=""><a href="#Rate" data-toggle="tab">Rating</a></li>
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="Details">
                   <h1 style="font-size:50;">{{ stall.name }}</h1>
                   <img class="offset1" src="{{  stall.photo  }}" style="max-height:250px; max-width:250px;">
                   <p>
-                    Description of stall<br><br>
+<!--                     Description of stall<br><br> -->
                     {{ stall.description }}
                   </p>
                   
@@ -121,9 +121,7 @@
                     <aref="{{ stall.photo }}" target="_blank"><img class = "itemimage" src="{{ stall.photo }}" alt="{{ stall.name }}" style="max-height:250px; max-width:250px;">
                   </p>
                 </div>
-                <div class="tab-pane fade" id="Rate">
-                  <div class="rateit" data-rateit-value="{{stall.rating}}" data-rateit-max="6" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                </div>
+
               </div>  <!--/tab-->
 
           </div>
@@ -138,6 +136,17 @@
             <li><a href = "/">sidebar1</a></li>
             <li><a href = "/">sidebar2</a></li>
             <li><a href = "/">sidebar3</a></li>
+            <!--
+              Below we include the Login Button social plugin. This button uses the JavaScript SDK to
+              present a graphical Login button that triggers the FB.login() function when clicked.
+
+              Learn more about options for the login button plugin:
+              /docs/reference/plugins/login/ -->
+
+            <li><div class="fb-login-button" data-show-faces="true" data-width="200" size="large" data-max-rows="1"></div></li>
+            <li></li>
+<!--             <li><a href="javascript:writeName()" class="btn">Write name to console</a></li> -->
+            <li><div class="btn btn-primary" onclick="verifyLogout()">Logout</div></li>
           </ul>
         </div>
 
