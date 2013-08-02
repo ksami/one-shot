@@ -20,6 +20,7 @@ import jinja2
 import os
 import datetime
 
+from urllib2 import quote
 from google.appengine.ext import db
 from google.appengine.ext import blobstore
 
@@ -129,7 +130,7 @@ class DisplayStalls(webapp2.RequestHandler):
 
   def get(self):
 	title = self.request.query_string
-	title = title.replace("%20", " ")
+	title = unquote(title).decode('utf-8')
 	stall = Stalls.get_by_key_name(title)
 	query = db.Query(Reviews)
 	query.filter("stallname =", title)
