@@ -72,7 +72,8 @@
                   {% endif %}
                 </td>
                 
-                <td class="rateit" data-rateit-value="{{stall.rating}}" data-rateit-max="6" data-rateit-ispreset="true" data-rateit-readonly="true">
+                <td>
+                  <div class="rateit" data-rateit-value="{{stall.rating}}" data-rateit-max="6" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
                 </td>
                 
                 <td>{{ stall.date.strftime('%A, %d %B %Y %I:%M%p') }}</td>
@@ -143,7 +144,7 @@
   <script src="../flat-ui/js/jquery.stacktable.js"></script>
   <script src="http://vjs.zencdn.net/c/video.js"></script>
   <script src="../flat-ui/js/application.js"></script>
-
+  <script src="../js/jquery.rateit.js"></script>
   <script src="../js/test.js"></script>
 </body>
 </html>
