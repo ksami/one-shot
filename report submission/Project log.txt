@@ -1,0 +1,61 @@
+//Guohao
+130513 8hrs Orbital Workshop
+140513 8hrs Orbital Workshop
+170513 3hrs learn html/css
+200513 7hrs Learning jinja,python and html
+210513 3hrs learn about jinja and webapp2 and the interaction with python to come up with the webpage
+020613 2hrs peer evaluation
+050613 2hrs debugging and learning about Gql
+070613 3hrs debugging and learning the difference between Gql and Sql
+100613 6hrs debugging and trying to fix search and image function
+150613 3hrs Google cloud blobstore and image library
+160613 4hrs implement search of stall name by keyword and continuing on image display
+170613 2hrs implement image display using giftbook example
+180613 4hrs Discuss with Kenneth next phase of work, the design of review and users
+Learn how the branches of github work
+200613 6hrs Learn javascript syntax and event interaction with user input
+250613 4hrs Mission Control and debugging
+270613 4hrs Learn about Facebook Login and how to extract data from javascript to python
+280613 6hrs Review and Display Review( still have bugs) and debugging
+020713 8hrs Project report submission, discussing with kenneth, doing the prototype video, Mission Control
+030713 2hrs json,yaml and XML. XML syntax.
+070713 2hrs Project evaluation for peer group.
+160713 6hrs Did blob upload but cant do retrieve and display link. Kenneth tell me give up
+200713 6hrs Did Search review by username and debugging, learn about ajax.
+220713 6hrs Manage to display reviews of each stall under the Display html page.
+250713 6hrs Debugging display page, review page not displaying as intended
+010813 4hrs Looking at how to resolve the bug of FB.getLoginStatus() called before calling FB.init() 020813 6hrs Cleaning up the code, looking at how to resolve apostrophe in variable in jinja
+040813 10hrs Doing video, Project report, clearing display issues
+
+Subtotal: 131hrs
+
+//Kenneth
+
+130513 8hrs Orbital Workshop
+140513 8hrs Orbital Workshop
+160513 5hrs Implemented basic skeleton for the site
+200513 7hrs Tested form input and adding to database
+270513 6hrs Added mockup, journal, report and wiki; Learn regex
+280513 5hrs Added design; Learn javascript, jquery
+020613 4hrs Peer evaluation; jquery
+030613 9hrs Design
+040613 8hrs Add new page, test datastore, viewing on mobile device
+100613 6hrs Design
+110613 6hrs Design
+160613 3hrs Learn Git
+170613 3hrs Python Imaging Library
+180613 6hrs Facebook login
+210613 3hrs Javascript; Separate Facebook Javascript portion
+250613 9hrs Jquery; Facebook login
+260613 6hrs Javascript; Facebook login
+040713 1hrs Peer Review
+090713 4hrs Response to peer evaluation, ratings
+100713 2hrs Rating, tags
+230713 2hrs Rating, tags
+240713 9hrs Rating, tags
+250713 2hrs Rating, tags in stalls
+010813 5hrs Rating, tags
+020813 2hrs Cleanup
+040813 3hrs Cleanup, Project Report
+
+Subtotal: 132hrs
